@@ -90,7 +90,7 @@ export const projects: Project[] = [
       'Applied MVC separation to keep academic domain logic modular and testable',
       'Used LibreTranslate API to support multilingual communication without building a custom translation layer',
     ],
-    image: '/projects/educomm-placeholder.svg',
+    image: '/projects/educomm-preview.webp',
     featured: true,
   },
   {
@@ -158,7 +158,7 @@ export const projects: Project[] = [
       'Normalized relational schemas to handle diverse environmental input types without redundancy',
       'Separated authentication flows (OTP + OAuth) to support both staff and public user onboarding',
     ],
-    image: '/projects/iprk-placeholder.svg',
+    image: '/projects/iprk-preview.webp',
     featured: true,
   },
   {
@@ -217,6 +217,7 @@ export const projects: Project[] = [
       'Used typed React patterns to make complex states easier to reason about',
       'Validated API assumptions with Postman before wiring user-facing flows',
     ],
+    image: '/projects/outfitters-preview.webp',
     featured: true,
   },
   {
@@ -276,6 +277,7 @@ export const projects: Project[] = [
       'Kept operational language consistent through localization and terminology cleanup',
       'Prioritized handover clarity and stable module behavior over risky broad refactors',
     ],
+    image: '/projects/mypatil-preview.webp',
     featured: true,
   },
 ];
