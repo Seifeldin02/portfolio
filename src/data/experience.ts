@@ -18,42 +18,37 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     id: 'mypatil',
-    company: 'MyPatil',
-    position: 'Full-Stack Developer (Laravel)',
-    startDate: 'Sep 2025',
-    endDate: 'Apr 2026',
-    location: 'Malaysia / Remote',
+    company: 'Gates Technology / MyPatil',
+    position: 'Full-Stack Developer',
+    startDate: 'Oct 2025',
+    endDate: 'Mar 2026',
+    location: 'Cyberjaya, Malaysia / Remote',
     type: 'full-time',
     description:
-      'Developed and maintained Laravel modules supporting business operations, administrative processes, and user management for a 50+ person engineering team across 8+ core system modules.',
+      'Developed and maintained Laravel and Livewire modules for MyPatil-related enterprise operations, including agency, user, unit, department, SpocDesk, Redmine, portal, menu, localization, and schema correction work.',
     responsibilities: [
-      'Developed and maintained Laravel modules for enterprise operations web system',
-      'Conducted code reviews for a team of 5 developers, maintaining zero critical bugs reaching production',
-      'Designed normalized relational database schemas reducing data redundancy',
-      'Designed and implemented RESTful API routing architecture across 6 core modules',
-      'Enforced clean separation of concerns with standardized data contracts between services',
+      'Built agency, user, unit, department, enforcement, and prosecution admin tables and management pages',
+      'Implemented SpocDesk article, tag, category, ticket listing, and ticket creation workflows',
+      'Hardened schema, pivot query, table availability, and Redmine ticket registration logic',
+      'Cleaned localization strings, menu behavior, payment descriptions, duplicate UI text, and terminology',
+      'Prepared completed handover items with module-level context for continued development',
     ],
-    technologies: [
-      'Laravel',
-      'PHP',
-      'MySQL',
-      'RESTful APIs',
-      'Eloquent',
-      'Git',
-      'Laravel Migrations',
-    ],
+    technologies: ['Laravel', 'PHP', 'MySQL', 'Livewire', 'Eloquent', 'Git', 'Laravel Migrations'],
     achievements: [
       {
-        metric: 'Zero Critical Bugs',
-        description: 'Maintained zero critical bugs reaching production across 5-person team',
+        metric: '14 Completed Handover Items',
+        description:
+          'Closed and handed over enterprise module tasks across admin, ticket, portal, and schema areas',
       },
       {
-        metric: '8+ Core Modules',
-        description: 'Successfully managed development across 8+ core system modules',
+        metric: 'Multi-Module Ownership',
+        description:
+          'Worked across agency, users, departments, SpocDesk, Redmine, portal, menus, and localization',
       },
       {
-        metric: 'Team Leadership',
-        description: 'Conducted code reviews for 5 developers, ensuring quality standards',
+        metric: 'Operational Reliability',
+        description:
+          'Focused on schema corrections, query hardening, UI cleanup, and predictable admin behavior',
       },
     ],
   },
@@ -66,16 +61,23 @@ export const experiences: Experience[] = [
     location: 'Hybrid / Cairo',
     type: 'full-time',
     description:
-      'Developed responsive dashboards using React.js and TypeScript, contributing to a 30-person engineering team serving a platform with thousands of active users.',
+      'Developed responsive React and TypeScript interfaces for a social commerce product, contributing to frontend modules, API integration, Postman-tested flows, responsive UI fixes, and Agile delivery.',
     responsibilities: [
-      'Developed responsive dashboards using React.js and TypeScript for a 30-person team',
-      'Integrated frontend components with backend APIs using React and TypeScript',
-      'Resolved data inconsistencies and improved load performance across key user-facing modules',
-      'Optimized UI performance and accessibility across major browsers',
-      'Delivered features end-to-end within Agile/Scrum sprints using Jira',
-      'Debugged and resolved cross-browser UI inconsistencies using browser dev tools',
+      'Built and refined React and TypeScript components for product, order, checkout, account, and social engagement flows',
+      'Integrated frontend states with backend API behavior and tested endpoints using Postman',
+      'Improved responsive layouts and UI behavior across product listings, posts, reports, and support flows',
+      'Worked with Tailwind CSS, Zustand exposure, Jira tasks, standups, sprint planning, and review cycles',
+      'Debugged issues around pricing inputs, post descriptions, product collections, and support messaging',
     ],
-    technologies: ['React.js', 'TypeScript', 'Tailwind CSS', 'Git', 'Jira', 'Agile'],
+    technologies: [
+      'React.js',
+      'TypeScript',
+      'Next.js',
+      'Tailwind CSS',
+      'Zustand',
+      'Postman',
+      'Jira',
+    ],
     achievements: [
       {
         metric: '~30% Performance Improvement',

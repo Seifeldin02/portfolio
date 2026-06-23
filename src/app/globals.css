@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafaf9;
-  --foreground: #0c0a09;
+  --background: #f8fafc;
+  --foreground: #111827;
   --surface: #ffffff;
-  --surface-muted: #f5f5f4;
-  --border: #e7e5e4;
-  --muted: #78716c;
-  --accent: #0d9488;
-  --accent-hover: #0f766e;
-  --accent-muted: #ccfbf1;
-  --accent-subtle: #f0fdfa;
+  --surface-muted: #eef2f7;
+  --border: #d9e2ec;
+  --muted: #64748b;
+  --accent: #0f766e;
+  --accent-hover: #115e59;
+  --accent-muted: #99f6e4;
+  --accent-subtle: #ecfeff;
 }
 
 .dark {
-  --background: #0c0a09;
-  --foreground: #fafaf9;
-  --surface: #1c1917;
-  --surface-muted: #292524;
-  --border: #44403c;
-  --muted: #a8a29e;
-  --accent: #2dd4bf;
-  --accent-hover: #5eead4;
-  --accent-muted: #134e4a;
-  --accent-subtle: #042f2e;
+  --background: #09090b;
+  --foreground: #f8fafc;
+  --surface: #111827;
+  --surface-muted: #1f2937;
+  --border: #334155;
+  --muted: #94a3b8;
+  --accent: #22d3ee;
+  --accent-hover: #67e8f9;
+  --accent-muted: #164e63;
+  --accent-subtle: #082f49;
 }
 
 @theme inline {
@@ -65,6 +65,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
@@ -85,4 +86,8 @@ body {
     var(--border) 80%,
     transparent
   );
+}
+
+.text-balance {
+  text-wrap: balance;
 }

@@ -9,12 +9,12 @@ export function Card({ className, hover = false, variant = 'default', ...props }
   return (
     <div
       className={cn(
-        'rounded-xl transition-all duration-200',
+        'rounded-lg transition-all duration-200',
         {
           'bg-surface border border-border': variant === 'default',
           'bg-surface border border-border shadow-sm': variant === 'elevated',
           'bg-transparent border border-border': variant === 'outline',
-          'hover:shadow-md hover:border-accent/30 cursor-pointer': hover,
+          'hover:-translate-y-0.5 hover:shadow-md hover:border-accent/30 cursor-pointer': hover,
         },
         className
       )}

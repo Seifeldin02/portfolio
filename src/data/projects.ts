@@ -161,4 +161,121 @@ export const projects: Project[] = [
     image: '/projects/iprk-placeholder.svg',
     featured: true,
   },
+  {
+    id: 'outfitters',
+    title: 'Outfitters Social Commerce Platform',
+    slug: 'outfitters-social-commerce',
+    shortDescription:
+      'React and TypeScript frontend work for a social commerce platform combining posts, products, orders, checkout, insights, and account flows.',
+    fullDescription:
+      'Contributed to a live social commerce web platform during the WeCodeForYou internship, focusing on responsive UI components, API integration, product and order flows, account settings, reporting interactions, and platform bug fixes.',
+    problem:
+      'The platform combined social engagement and e-commerce workflows, requiring users to move between posts, product details, orders, checkout, insights, account settings, and support flows without losing context.',
+    whatBuilt:
+      'Reusable React and TypeScript UI components for product listings, post details, order flows, checkout interactions, account settings, reporting UI, insights export interactions, and bug fixes across user-facing modules.',
+    architectureSummary:
+      'React and TypeScript frontend built with reusable components, Tailwind CSS styling, Zustand state management exposure, API integration tested with Postman, and iterative delivery through Jira-managed sprints.',
+    technologies: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Zustand', 'Postman', 'Jira'],
+    category: 'frontend',
+    status: 'Internship Project',
+    visual: 'enterprise',
+    keyFeatures: [
+      'Social engagement and post detail interfaces',
+      'Product listing, wishlist, cart, checkout, and order management flows',
+      'Brand/outfitter account settings and insights UI',
+      'Bug fixes for support messaging, post descriptions, collections, and pricing inputs',
+    ],
+    achievements: [
+      {
+        metric: '20-Week Internship',
+        description: 'Worked in a professional Agile frontend environment with sprint-based tasks',
+      },
+      {
+        metric: 'Cross-Functional Work',
+        description:
+          'Collaborated around frontend, backend API behavior, QA feedback, and UI design',
+      },
+      {
+        metric: 'Live Product Context',
+        description: 'Contributed to real product modules rather than isolated practice screens',
+      },
+    ],
+    technicalChallenges: [
+      'Keeping social and commerce flows responsive across device sizes',
+      'Integrating frontend states with backend API responses and error behavior',
+      'Reducing UI bugs around long content, product collections, support messaging, and decimal pricing',
+      'Building maintainable React components while adapting quickly to a large codebase',
+    ],
+    keyAccomplishments: [
+      'Built and refined product, order, checkout, account, social engagement, and reporting interfaces',
+      'Worked with API testing and backend integration details using Postman',
+      'Improved UI reliability through bug fixes and responsive layout adjustments',
+      'Participated in Agile delivery with Jira, standups, feedback cycles, and task breakdowns',
+    ],
+    technicalDecisions: [
+      'Kept UI components reusable to reduce duplicated implementation across product modules',
+      'Used typed React patterns to make complex states easier to reason about',
+      'Validated API assumptions with Postman before wiring user-facing flows',
+    ],
+    featured: true,
+  },
+  {
+    id: 'mypatil-operations',
+    title: 'MyPatil Operations Modules',
+    slug: 'mypatil-operations-modules',
+    shortDescription:
+      'Laravel and Livewire enterprise modules covering agencies, users, units, departments, SpocDesk content, tickets, Redmine, menus, localization, and schema fixes.',
+    fullDescription:
+      'Worked as a full-stack developer on MyPatil-related enterprise operations modules, implementing admin tables, management screens, ticket/content flows, schema and pivot query fixes, terminology cleanup, and handover-ready module updates.',
+    problem:
+      'Enterprise operations teams needed maintainable admin modules with accurate table behavior, clean terminology, reliable schema relationships, and clear handover for continued development.',
+    whatBuilt:
+      'Agency, user, unit, department, SpocDesk content and ticket management, Redmine integration, menu management, monthly pass table updates, portal routing changes, localization cleanup, and schema/query hardening.',
+    architectureSummary:
+      'Laravel and Livewire application patterns with Eloquent models, table components, menu/navigation builders, localization strings, schema/pivot logic, and admin workflows shaped around operational support.',
+    technologies: ['Laravel', 'Livewire', 'PHP', 'MySQL', 'Eloquent', 'Redmine', 'Localization'],
+    category: 'enterprise',
+    status: 'Enterprise Project',
+    visual: 'enterprise',
+    keyFeatures: [
+      'Agency, user, unit, and department management modules',
+      'SpocDesk article, tag, category, ticket listing, and ticket creation flows',
+      'Redmine ticket registration logic and schema/pivot query hardening',
+      'Portal navigation, monthly pass tables, localization, and terminology cleanup',
+    ],
+    achievements: [
+      {
+        metric: '14 Handover Items',
+        description: 'Completed and handed over a set of enterprise module tasks at contract end',
+      },
+      {
+        metric: 'Admin Module Breadth',
+        description:
+          'Worked across agency, users, departments, tickets, content, menus, and portal flows',
+      },
+      {
+        metric: 'Operational Stability',
+        description:
+          'Focused on schema corrections, query fixes, UI cleanup, and predictable admin behavior',
+      },
+    ],
+    technicalChallenges: [
+      'Maintaining consistent behavior across related admin tables and management screens',
+      'Hardening schema, pivot, and table-availability logic without breaking existing workflows',
+      'Cleaning localization and terminology across operational interfaces',
+      'Coordinating handover details so the next developer could continue safely',
+    ],
+    keyAccomplishments: [
+      'Implemented management modules for agencies, users, units, departments, and SpocDesk workflows',
+      'Improved ticket/content management flows and Redmine registration logic',
+      'Fixed navigation builder caching, SIT article listing issues, and schema/pivot query behavior',
+      'Cleaned UI labels, duplicate text, dropdowns, add-button terminology, and payment descriptions',
+    ],
+    technicalDecisions: [
+      'Used Livewire table patterns for maintainable admin CRUD workflows',
+      'Kept operational language consistent through localization and terminology cleanup',
+      'Prioritized handover clarity and stable module behavior over risky broad refactors',
+    ],
+    featured: true,
+  },
 ];

@@ -1,13 +1,28 @@
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Layers3 } from 'lucide-react';
 import { skillsData } from '@/data/skills';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Section, SectionHeader } from '@/components/ui/section';
 
-const primaryStack = ['React.js', 'TypeScript', 'Next.js', 'Laravel', 'RESTful APIs', 'MySQL'];
-const comfortableWith = ['Java', 'Firebase', 'SQL', 'PHP', 'Git', 'Agile/Scrum'];
-const additionalTools = ['AWS', 'Jira', 'Browser DevTools', 'CI/CD', 'MVC', 'Eloquent ORM'];
+const stackGroups = [
+  {
+    title: 'Product frontend',
+    description: 'Interfaces that hold up across data states, roles, devices, and real user flows.',
+    items: ['React', 'TypeScript', 'Next.js App Router', 'Tailwind CSS v4', 'Zustand'],
+  },
+  {
+    title: 'Full-stack delivery',
+    description:
+      'Server-side behavior, API contracts, validation, admin workflows, and persistence.',
+    items: ['Laravel', 'Livewire', 'Firebase Admin', 'Firestore', 'REST APIs'],
+  },
+  {
+    title: 'Engineering workflow',
+    description: 'The habits that make code shippable, reviewable, and safe to hand over.',
+    items: ['Jira', 'Postman', 'Git', 'Code Review', 'UAT', 'Documentation'],
+  },
+];
 
 export function TechStack() {
   const categories = skillsData.filter((cat) =>
@@ -18,49 +33,27 @@ export function TechStack() {
     <Section divider>
       <SectionHeader
         eyebrow="Technical stack"
-        title="Technologies I work with"
-        description="Grouped by strength — primary tools used daily, plus supporting technologies from professional and academic work."
+        title="Current stack, organized by how products actually ship"
+        description="Modern recruiters need more than a list of libraries. This is the stack mapped to the work it supports: polished UI, backend integration, data ownership, and delivery practice."
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
-        <div className="rounded-xl border border-accent/30 bg-accent-subtle p-6">
-          <h3 className="text-sm font-medium uppercase tracking-wide text-accent mb-3">
-            Primary stack
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {primaryStack.map((skill) => (
-              <Badge key={skill} variant="accent">
-                {skill}
-              </Badge>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-xl border border-border bg-surface p-6">
-          <h3 className="text-sm font-medium uppercase tracking-wide text-muted mb-3">
-            Comfortable with
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {comfortableWith.map((skill) => (
-              <Badge key={skill} variant="default">
-                {skill}
-              </Badge>
-            ))}
-          </div>
-        </div>
-
-        <div className="rounded-xl border border-border bg-surface p-6">
-          <h3 className="text-sm font-medium uppercase tracking-wide text-muted mb-3">
-            Additional tools
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {additionalTools.map((skill) => (
-              <Badge key={skill} variant="outline">
-                {skill}
-              </Badge>
-            ))}
-          </div>
-        </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12">
+        {stackGroups.map((group) => (
+          <article key={group.title} className="rounded-xl border border-border bg-surface p-6">
+            <div className="mb-4 inline-flex rounded-lg bg-accent-subtle p-2.5">
+              <Layers3 size={20} className="text-accent" aria-hidden="true" />
+            </div>
+            <h3 className="mb-2 text-lg font-semibold text-foreground">{group.title}</h3>
+            <p className="mb-5 text-sm leading-relaxed text-muted">{group.description}</p>
+            <div className="flex flex-wrap gap-2">
+              {group.items.map((skill) => (
+                <Badge key={skill} variant="accent">
+                  {skill}
+                </Badge>
+              ))}
+            </div>
+          </article>
+        ))}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -70,7 +63,7 @@ export function TechStack() {
             <p className="text-sm text-muted mb-3">{category.description}</p>
             <div className="flex flex-wrap gap-1.5">
               {category.skills.map((skill) => (
-                <Badge key={skill.name} variant="outline" className="text-xs">
+                <Badge key={skill.name} variant="outline" className="text-xs bg-surface">
                   {skill.name}
                 </Badge>
               ))}
@@ -81,7 +74,7 @@ export function TechStack() {
 
       <div className="text-center mt-10">
         <Link href="/skills">
-          <Button size="lg" variant="outline" className="group">
+          <Button size="lg" variant="outline" className="group bg-surface">
             Full Skills Breakdown
             <ArrowRight
               size={18}

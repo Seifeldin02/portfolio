@@ -23,12 +23,15 @@ export async function POST(request: NextRequest) {
     }
 
     const data = validation.data;
+    const submittedAt = new Date().toISOString();
 
     await adminDb.collection('contactMessages').add({
       name: data.name,
       email: data.email,
       subject: data.subject,
       message: data.message,
+      source: 'portfolio-contact-form',
+      submittedAt,
       createdAt: FieldValue.serverTimestamp(),
     });
 

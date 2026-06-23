@@ -51,7 +51,7 @@ export function ProjectVisualPanel({
     >
       <div className="text-center px-6 py-8">
         <p className="text-xs uppercase tracking-wider text-muted mb-2">
-          {visualLabels[visual]} — screenshot coming soon
+          {visualLabels[visual]} - screenshot coming soon
         </p>
         <p className="text-lg font-medium text-foreground">{title}</p>
       </div>
