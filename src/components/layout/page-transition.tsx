@@ -1,21 +1,35 @@
 'use client';
 
-import { motion, useReducedMotion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const shouldReduceMotion = useReducedMotion();
+  const hasMounted = useRef(false);
+  const [entered, setEntered] = useState(true);
+
+  useEffect(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true;
+      return;
+    }
+
+    setEntered(false);
+    const frame = requestAnimationFrame(() => setEntered(true));
+
+    return () => cancelAnimationFrame(frame);
+  }, [pathname]);
 
   return (
-    <motion.main
+    <main
       key={pathname}
-      className="flex-1"
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.26, ease: [0.25, 0.1, 0.25, 1] }}
+      className="flex-1 transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none"
+      style={{
+        opacity: entered ? 1 : 0,
+        transform: entered ? 'translateY(0)' : 'translateY(10px)',
+      }}
     >
       {children}
-    </motion.main>
+    </main>
   );
 }
