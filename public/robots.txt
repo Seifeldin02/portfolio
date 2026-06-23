@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /.next/
+
+Sitemap: https://seifeldin-portfolio.vercel.app/sitemap.xml
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /

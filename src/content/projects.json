@@ -1,0 +1,43 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "title": "EduComm - Academic Platform",
+      "slug": "educomm",
+      "description": "A full-stack academic platform built with Next.js and Firebase for student-lecturer collaboration",
+      "image": "/projects/educomm.jpg",
+      "github": "https://github.com/seifeldin02/educomm",
+      "tags": ["Education", "Full-Stack", "Real-time"],
+      "technologies": ["React", "Next.js", "Firebase", "Tailwind CSS", "TypeScript"],
+      "status": "completed",
+      "featured": true,
+      "excerpt": "Solo-designed and delivered a full-stack academic platform for student and lecturer roles, built on React, Next.js, and Firebase following MVC architecture."
+    },
+    {
+      "id": "2",
+      "title": "IPRK Carbon Monitoring System",
+      "slug": "iprk-carbon-monitoring",
+      "description": "Enterprise web application for environmental data management and GHG analysis",
+      "image": "/projects/iprk.jpg",
+      "github": "https://github.com/seifeldin02/iprk-carbon",
+      "tags": ["Enterprise", "Environmental", "GIS"],
+      "technologies": ["Java", "JSP", "SQL", "Google Maps API", "OAuth"],
+      "status": "completed",
+      "featured": true,
+      "excerpt": "Built a full-stack enterprise application for Iskandar Puteri City Council with role-based access control and real-time GHG analysis."
+    },
+    {
+      "id": "3",
+      "title": "MyPatil - Operations Management System",
+      "slug": "mypatil",
+      "description": "Enterprise operations web system supporting business processes across 8+ modules",
+      "image": "/projects/mypatil.jpg",
+      "github": "https://github.com/seifeldin02/mypatil",
+      "tags": ["Enterprise", "Laravel", "Operations"],
+      "technologies": ["Laravel", "PHP", "MySQL", "RESTful APIs", "Vue.js"],
+      "status": "completed",
+      "featured": true,
+      "excerpt": "Developed and maintained Laravel modules for a 50+ person team supporting business operations and administrative processes."
+    }
+  ]
+}

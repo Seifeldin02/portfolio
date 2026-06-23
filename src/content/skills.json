@@ -1,0 +1,31 @@
+{
+  "skills": [
+    {
+      "category": "Frontend",
+      "items": [
+        "React.js",
+        "TypeScript",
+        "Next.js",
+        "Tailwind CSS",
+        "Framer Motion",
+        "React Hook Form"
+      ]
+    },
+    {
+      "category": "Backend",
+      "items": ["Node.js", "Express.js", "TypeScript", "RESTful APIs", "Laravel", "PHP"]
+    },
+    {
+      "category": "Database",
+      "items": ["MongoDB", "MySQL", "Firebase"]
+    },
+    {
+      "category": "Tools & DevOps",
+      "items": ["Git", "Docker", "AWS", "Vercel", "Jira", "GitHub"]
+    },
+    {
+      "category": "Languages",
+      "items": ["JavaScript", "TypeScript", "Python", "Java", "PHP", "C++"]
+    }
+  ]
+}
