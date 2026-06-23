@@ -20,8 +20,8 @@ export default function Experience() {
             Professional experience
           </h1>
           <p className="text-lg text-muted leading-relaxed">
-            Enterprise web development roles across international Agile teams — from React
-            dashboards to Laravel module architecture.
+            Frontend and full-stack work across React, TypeScript, Laravel, Livewire, API
+            integration, and admin workflows.
           </p>
         </Container>
       </section>
@@ -55,7 +55,7 @@ export default function Experience() {
                 </div>
 
                 <p className="text-sm text-muted mb-4">
-                  {experience.startDate} – {experience.endDate} · {experience.location}
+                  {experience.startDate} - {experience.endDate} · {experience.location}
                 </p>
 
                 <p className="text-foreground leading-relaxed mb-5">{experience.description}</p>
@@ -66,7 +66,7 @@ export default function Experience() {
                     {experience.responsibilities.map((resp) => (
                       <li key={resp} className="text-sm text-muted flex gap-2">
                         <span className="text-accent shrink-0" aria-hidden="true">
-                          —
+                          -
                         </span>
                         <span>{resp}</span>
                       </li>

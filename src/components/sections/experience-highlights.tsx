@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { experiences } from '@/data/experience';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { buttonClassName } from '@/components/ui/button';
 import { Section, SectionHeader } from '@/components/ui/section';
 
 export function ExperienceHighlights() {
@@ -10,8 +10,8 @@ export function ExperienceHighlights() {
     <Section muted>
       <SectionHeader
         eyebrow="Experience"
-        title="Professional roles"
-        description="Enterprise web development across international Agile teams."
+        title="Recent work"
+        description="Frontend and full-stack responsibilities from internship and contract roles."
       />
 
       <div className="relative space-y-0">
@@ -42,7 +42,7 @@ export function ExperienceHighlights() {
               </div>
 
               <p className="text-sm text-muted mb-3">
-                {exp.startDate} – {exp.endDate} · {exp.location}
+                {exp.startDate} - {exp.endDate} · {exp.location}
               </p>
 
               <p className="text-sm text-foreground leading-relaxed mb-4">{exp.description}</p>
@@ -51,7 +51,7 @@ export function ExperienceHighlights() {
                 {exp.responsibilities.slice(0, 3).map((resp) => (
                   <li key={resp} className="text-sm text-muted flex gap-2">
                     <span className="text-accent shrink-0" aria-hidden="true">
-                      —
+                      -
                     </span>
                     <span>{resp}</span>
                   </li>
@@ -71,14 +71,12 @@ export function ExperienceHighlights() {
       </div>
 
       <div className="text-center mt-10">
-        <Link href="/experience">
-          <Button size="lg" variant="outline" className="group">
-            Full Experience Timeline
-            <ArrowRight
-              size={18}
-              className="ml-2 group-hover:translate-x-0.5 transition-transform"
-            />
-          </Button>
+        <Link
+          href="/experience"
+          className={buttonClassName({ size: 'lg', variant: 'outline', className: 'group' })}
+        >
+          Full Experience Timeline
+          <ArrowRight size={18} className="ml-2 group-hover:translate-x-0.5 transition-transform" />
         </Link>
       </div>
     </Section>

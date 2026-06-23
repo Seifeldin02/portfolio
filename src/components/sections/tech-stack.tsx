@@ -2,24 +2,30 @@ import Link from 'next/link';
 import { ArrowRight, Layers3 } from 'lucide-react';
 import { skillsData } from '@/data/skills';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { buttonClassName } from '@/components/ui/button';
 import { Section, SectionHeader } from '@/components/ui/section';
 
 const stackGroups = [
   {
     title: 'Product frontend',
-    description: 'Interfaces that hold up across data states, roles, devices, and real user flows.',
-    items: ['React', 'TypeScript', 'Next.js App Router', 'Tailwind CSS v4', 'Zustand'],
+    description: 'Responsive UI, form states, navigation, data loading, and readable components.',
+    items: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Zustand'],
   },
   {
     title: 'Full-stack delivery',
-    description:
-      'Server-side behavior, API contracts, validation, admin workflows, and persistence.',
-    items: ['Laravel', 'Livewire', 'Firebase Admin', 'Firestore', 'REST APIs'],
+    description: 'Admin modules, validation, API contracts, server routes, and persistence.',
+    items: [
+      'Laravel',
+      'Livewire',
+      'Next.js route handlers',
+      'Firestore contact storage',
+      'REST APIs',
+    ],
   },
   {
     title: 'Engineering workflow',
-    description: 'The habits that make code shippable, reviewable, and safe to hand over.',
+    description:
+      'Tools used to clarify requirements, test APIs, review changes, and hand work over.',
     items: ['Jira', 'Postman', 'Git', 'Code Review', 'UAT', 'Documentation'],
   },
 ];
@@ -33,8 +39,8 @@ export function TechStack() {
     <Section divider>
       <SectionHeader
         eyebrow="Technical stack"
-        title="Current stack, organized by how products actually ship"
-        description="Modern recruiters need more than a list of libraries. This is the stack mapped to the work it supports: polished UI, backend integration, data ownership, and delivery practice."
+        title="Tools grouped by actual use"
+        description="A short view of the technologies I use across interface work, backend integration, database tasks, and delivery."
       />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12">
@@ -73,14 +79,16 @@ export function TechStack() {
       </div>
 
       <div className="text-center mt-10">
-        <Link href="/skills">
-          <Button size="lg" variant="outline" className="group bg-surface">
-            Full Skills Breakdown
-            <ArrowRight
-              size={18}
-              className="ml-2 group-hover:translate-x-0.5 transition-transform"
-            />
-          </Button>
+        <Link
+          href="/skills"
+          className={buttonClassName({
+            size: 'lg',
+            variant: 'outline',
+            className: 'group bg-surface',
+          })}
+        >
+          Full Skills Breakdown
+          <ArrowRight size={18} className="ml-2 group-hover:translate-x-0.5 transition-transform" />
         </Link>
       </div>
     </Section>

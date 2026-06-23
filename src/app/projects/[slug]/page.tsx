@@ -1,10 +1,10 @@
 import { projects } from '@/data/projects';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { buttonClassName } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { Section } from '@/components/ui/section';
-import { ExternalLink, Code, ArrowLeft } from 'lucide-react';
+import { ExternalLink, Code, ArrowLeft, LockKeyhole } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Metadata } from 'next';
@@ -65,23 +65,42 @@ export default async function ProjectDetail({ params }: Props) {
             {project.shortDescription}
           </p>
 
-          {(project.github || project.liveUrl) && (
+          {(project.github || project.liveUrl || project.proofLinks?.length) && (
             <div className="flex flex-wrap gap-3">
               {project.github && (
-                <a href={project.github} target="_blank" rel="noopener noreferrer">
-                  <Button className="group">
-                    <Code size={18} className="mr-2" aria-hidden="true" />
-                    View on GitHub
-                    <ExternalLink size={14} className="ml-2" aria-hidden="true" />
-                  </Button>
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={buttonClassName({ className: 'group' })}
+                >
+                  <Code size={18} className="mr-2" aria-hidden="true" />
+                  View on GitHub
+                  <ExternalLink size={14} className="ml-2" aria-hidden="true" />
                 </a>
               )}
+              {project.proofLinks?.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={buttonClassName({ variant: 'outline', className: 'group' })}
+                >
+                  <Code size={18} className="mr-2" aria-hidden="true" />
+                  {link.label}
+                  <ExternalLink size={14} className="ml-2" aria-hidden="true" />
+                </a>
+              ))}
               {project.liveUrl && (
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" className="group">
-                    <ExternalLink size={18} className="mr-2" aria-hidden="true" />
-                    Live Demo
-                  </Button>
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={buttonClassName({ variant: 'outline', className: 'group' })}
+                >
+                  <ExternalLink size={18} className="mr-2" aria-hidden="true" />
+                  Live Demo
                 </a>
               )}
             </div>
@@ -103,10 +122,27 @@ export default async function ProjectDetail({ params }: Props) {
               />
             ) : (
               <div className="flex items-center justify-center h-full min-h-[16rem]">
-                <p className="text-muted">Screenshot coming soon</p>
+                <div className="px-6 text-center">
+                  <LockKeyhole className="mx-auto mb-3 text-muted" size={28} aria-hidden="true" />
+                  <p className="text-muted">
+                    {project.mediaNote ?? 'Screenshot unavailable for this project.'}
+                  </p>
+                </div>
               </div>
             )}
           </div>
+          {project.mediaNote && project.image ? (
+            <p className="mt-3 text-sm text-muted">{project.mediaNote}</p>
+          ) : null}
+          {project.confidentialityNote ? (
+            <div className="mt-4 rounded-lg border border-border bg-surface p-4 text-sm text-muted">
+              <div className="mb-1 flex items-center gap-2 font-medium text-foreground">
+                <LockKeyhole size={16} aria-hidden="true" />
+                Confidentiality note
+              </div>
+              <p>{project.confidentialityNote}</p>
+            </div>
+          ) : null}
         </Container>
       </Section>
 
@@ -125,8 +161,10 @@ export default async function ProjectDetail({ params }: Props) {
               </div>
 
               <div>
-                <h2 className="text-2xl font-semibold text-foreground mb-3">Architecture</h2>
-                <p className="text-muted leading-relaxed">{project.architectureSummary}</p>
+                <h2 className="text-2xl font-semibold text-foreground mb-3">
+                  Technical implementation
+                </h2>
+                <p className="text-muted leading-relaxed">{project.technicalSummary}</p>
               </div>
 
               <div>
@@ -135,7 +173,7 @@ export default async function ProjectDetail({ params }: Props) {
                   {project.keyFeatures.map((feature) => (
                     <li key={feature} className="flex gap-2 text-muted">
                       <span className="text-accent shrink-0" aria-hidden="true">
-                        —
+                        -
                       </span>
                       <span>{feature}</span>
                     </li>
@@ -149,7 +187,7 @@ export default async function ProjectDetail({ params }: Props) {
                   {project.technicalDecisions.map((decision) => (
                     <li key={decision} className="flex gap-2 text-muted">
                       <span className="text-accent shrink-0" aria-hidden="true">
-                        —
+                        -
                       </span>
                       <span>{decision}</span>
                     </li>
@@ -163,7 +201,7 @@ export default async function ProjectDetail({ params }: Props) {
                   {project.technicalChallenges.map((challenge) => (
                     <li key={challenge} className="flex gap-2 text-muted">
                       <span className="text-accent shrink-0" aria-hidden="true">
-                        —
+                        -
                       </span>
                       <span>{challenge}</span>
                     </li>

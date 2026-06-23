@@ -35,7 +35,9 @@ export function Navbar() {
     <nav
       className={cn(
         'fixed top-0 w-full z-50 transition-all duration-300',
-        isScrolled ? 'bg-surface/90 backdrop-blur-md border-b border-border' : 'bg-transparent'
+        isScrolled || isOpen
+          ? 'bg-surface/95 backdrop-blur-md border-b border-border'
+          : 'bg-background/80 backdrop-blur-sm'
       )}
       aria-label="Main navigation"
     >

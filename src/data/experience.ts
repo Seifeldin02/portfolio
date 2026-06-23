@@ -5,7 +5,7 @@ export interface Experience {
   startDate: string;
   endDate: string;
   location: string;
-  type: 'full-time' | 'freelance' | 'contract';
+  type: 'full-time' | 'freelance' | 'contract' | 'internship';
   description: string;
   responsibilities: string[];
   technologies: string[];
@@ -23,11 +23,11 @@ export const experiences: Experience[] = [
     startDate: 'Oct 2025',
     endDate: 'Mar 2026',
     location: 'Cyberjaya, Malaysia / Remote',
-    type: 'full-time',
+    type: 'contract',
     description:
       'Developed and maintained Laravel and Livewire modules for MyPatil-related enterprise operations, including agency, user, unit, department, SpocDesk, Redmine, portal, menu, localization, and schema correction work.',
     responsibilities: [
-      'Built agency, user, unit, department, enforcement, and prosecution admin tables and management pages',
+      'Built agency, user, unit, department, enforcement, and prosecution admin tables and management screens',
       'Implemented SpocDesk article, tag, category, ticket listing, and ticket creation workflows',
       'Hardened schema, pivot query, table availability, and Redmine ticket registration logic',
       'Cleaned localization strings, menu behavior, payment descriptions, duplicate UI text, and terminology',
@@ -36,19 +36,19 @@ export const experiences: Experience[] = [
     technologies: ['Laravel', 'PHP', 'MySQL', 'Livewire', 'Eloquent', 'Git', 'Laravel Migrations'],
     achievements: [
       {
-        metric: '14 Completed Handover Items',
+        metric: 'Contract handover',
         description:
-          'Closed and handed over enterprise module tasks across admin, ticket, portal, and schema areas',
+          'Prepared completed module work with notes covering admin, ticket, portal, and schema areas',
       },
       {
-        metric: 'Multi-Module Ownership',
+        metric: 'Multi-module work',
         description:
           'Worked across agency, users, departments, SpocDesk, Redmine, portal, menus, and localization',
       },
       {
-        metric: 'Operational Reliability',
+        metric: 'Maintenance focus',
         description:
-          'Focused on schema corrections, query hardening, UI cleanup, and predictable admin behavior',
+          'Focused on schema corrections, query behavior, UI cleanup, and predictable admin behavior',
       },
     ],
   },
@@ -59,7 +59,7 @@ export const experiences: Experience[] = [
     startDate: 'Aug 2024',
     endDate: 'Feb 2025',
     location: 'Hybrid / Cairo',
-    type: 'full-time',
+    type: 'internship',
     description:
       'Developed responsive React and TypeScript interfaces for a social commerce product, contributing to frontend modules, API integration, Postman-tested flows, responsive UI fixes, and Agile delivery.',
     responsibilities: [
@@ -80,17 +80,17 @@ export const experiences: Experience[] = [
     ],
     achievements: [
       {
-        metric: '~30% Performance Improvement',
-        description: 'Reduced page load times by approximately 30% across major browsers',
+        metric: 'Product UI work',
+        description: 'Contributed React and TypeScript screens for a social commerce product',
       },
       {
-        metric: 'Cross-Browser Optimization',
-        description: 'Guaranteed layout integrity across mobile, tablet, and desktop breakpoints',
+        metric: 'Responsive fixes',
+        description: 'Improved layout behavior across product, post, report, and support flows',
       },
       {
-        metric: '30-Person Team Collaboration',
+        metric: 'API integration',
         description:
-          'Contributed to large-scale engineering team serving thousands of active users',
+          'Used Postman and frontend debugging to align UI states with backend responses',
       },
     ],
   },

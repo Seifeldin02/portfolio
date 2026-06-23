@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Portfolio projects including EduComm academic platform and IPRK Carbon Monitoring System.',
+    'Portfolio projects including EduComm, ECO-JB, Outfitters, and confidential MyPatil work.',
 };
 
 export default function ProjectsLayout({ children }: { children: React.ReactNode }) {

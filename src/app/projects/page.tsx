@@ -37,8 +37,8 @@ export default function ProjectsPage() {
             Engineering case studies
           </h1>
           <p className="text-lg text-muted leading-relaxed">
-            Academic and enterprise applications demonstrating full-stack development, API design,
-            and role-based system architecture.
+            Academic, internship, and enterprise work with public repositories where available and
+            clear confidentiality notes where work cannot be shared.
           </p>
         </Container>
       </section>
@@ -97,7 +97,9 @@ export default function ProjectsPage() {
                         />
                       ) : (
                         <div className="flex items-center justify-center h-full p-6 text-center">
-                          <p className="text-sm text-muted">Screenshot coming soon</p>
+                          <p className="text-sm text-muted">
+                            {project.mediaNote ?? 'Screenshot unavailable'}
+                          </p>
                         </div>
                       )}
                       <div className="absolute top-3 left-3">

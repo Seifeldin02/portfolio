@@ -6,7 +6,7 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
+import { buttonClassName } from '@/components/ui/button';
 import { ProjectVisualPanel } from '@/components/ui/project-visual';
 import { Section, SectionHeader } from '@/components/ui/section';
 
@@ -16,9 +16,9 @@ export function FeaturedProjects() {
   return (
     <Section divider containerSize="wide">
       <SectionHeader
-        eyebrow="Case studies"
-        title="Work that shows product, system, and delivery thinking"
-        description="These are framed as engineering case studies: what problem existed, what I built, what technical decisions mattered, and how the work was validated or handed over."
+        eyebrow="Selected work"
+        title="Projects with enough context to review"
+        description="A short set of projects with source links where available and confidentiality notes where company work cannot be opened publicly."
       />
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
@@ -37,6 +37,7 @@ export function FeaturedProjects() {
                   visual={project.visual}
                   image={project.image}
                   status={project.status}
+                  mediaNote={project.mediaNote}
                   className="h-48"
                 />
 
@@ -83,14 +84,16 @@ export function FeaturedProjects() {
       </div>
 
       <div className="text-center mt-10">
-        <Link href="/projects">
-          <Button size="lg" variant="outline" className="group bg-surface">
-            View All Projects
-            <ArrowRight
-              size={18}
-              className="ml-2 group-hover:translate-x-0.5 transition-transform"
-            />
-          </Button>
+        <Link
+          href="/projects"
+          className={buttonClassName({
+            size: 'lg',
+            variant: 'outline',
+            className: 'group bg-surface',
+          })}
+        >
+          View All Projects
+          <ArrowRight size={18} className="ml-2 group-hover:translate-x-0.5 transition-transform" />
         </Link>
       </div>
     </Section>

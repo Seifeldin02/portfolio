@@ -8,7 +8,7 @@ import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
   title: 'Skills',
-  description: `Technical skills and expertise of ${siteConfig.name}.`,
+  description: `Technical skills used by ${siteConfig.name}.`,
 };
 
 const tierLabels = {
@@ -42,11 +42,10 @@ export default function Skills() {
         <Container size="narrow">
           <p className="text-sm font-medium uppercase tracking-wide text-accent mb-3">Skills</p>
           <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground mb-6">
-            Technical expertise
+            Practical technical skills
           </h1>
           <p className="text-lg text-muted leading-relaxed">
-            Skills grouped by proficiency level and category — reflecting daily use in professional
-            roles and academic projects.
+            Grouped by how often I use them and where they appear in real project work.
           </p>
         </Container>
       </section>
@@ -92,7 +91,7 @@ export default function Skills() {
 
         <SectionHeader
           title="By category"
-          description="Detailed breakdown across engineering domains."
+          description="A clearer breakdown across frontend, backend, databases, tools, and coursework."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -7,6 +7,7 @@ interface ProjectVisualProps {
   visual: ProjectVisual;
   image?: string;
   status: string;
+  mediaNote?: string;
   className?: string;
 }
 
@@ -21,6 +22,7 @@ export function ProjectVisualPanel({
   visual,
   image,
   status,
+  mediaNote,
   className,
 }: ProjectVisualProps) {
   if (image) {
@@ -51,7 +53,7 @@ export function ProjectVisualPanel({
     >
       <div className="text-center px-6 py-8">
         <p className="text-xs uppercase tracking-wider text-muted mb-2">
-          {visualLabels[visual]} - screenshot coming soon
+          {mediaNote ?? `${visualLabels[visual]} - screenshot unavailable`}
         </p>
         <p className="text-lg font-medium text-foreground">{title}</p>
       </div>

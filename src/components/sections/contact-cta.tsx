@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Download, Mail } from 'lucide-react';
 import { siteConfig } from '@/lib/site-config';
-import { Button } from '@/components/ui/button';
+import { buttonClassName } from '@/components/ui/button';
 import { Section } from '@/components/ui/section';
 
 export function ContactCTA() {
@@ -21,17 +21,24 @@ export function ContactCTA() {
           </div>
 
           <div className="flex flex-col sm:flex-row lg:flex-col xl:flex-row gap-3 lg:justify-end">
-            <Link href="/contact" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full">
-                <Mail size={18} className="mr-2" aria-hidden="true" />
-                Contact Me
-              </Button>
+            <Link
+              href="/contact"
+              className={buttonClassName({ size: 'lg', className: 'w-full sm:w-auto' })}
+            >
+              <Mail size={18} className="mr-2" aria-hidden="true" />
+              Contact Me
             </Link>
-            <a href={siteConfig.resumePath} download className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full">
-                <Download size={18} className="mr-2" aria-hidden="true" />
-                Download Resume
-              </Button>
+            <a
+              href={siteConfig.resumePath}
+              download
+              className={buttonClassName({
+                size: 'lg',
+                variant: 'outline',
+                className: 'w-full sm:w-auto',
+              })}
+            >
+              <Download size={18} className="mr-2" aria-hidden="true" />
+              Download Resume
             </a>
           </div>
         </div>

@@ -189,8 +189,8 @@ export function CommandPaletteProvider({ children }: { children: React.ReactNode
               )}
             </ul>
             <div className="px-4 py-2 border-t border-border text-xs text-muted flex gap-4">
-              <span>↑↓ Navigate</span>
-              <span>↵ Select</span>
+              <span>Arrow keys Navigate</span>
+              <span>Enter Select</span>
               <span>Esc Close</span>
             </div>
           </div>

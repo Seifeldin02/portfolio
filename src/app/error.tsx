@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import { Button, buttonClassName } from '@/components/ui/button';
 
 export default function Error({
   error,
@@ -23,8 +23,8 @@ export default function Error({
       </p>
       <div className="flex gap-4">
         <Button onClick={reset}>Try Again</Button>
-        <Link href="/">
-          <Button variant="outline">Go Home</Button>
+        <Link href="/" className={buttonClassName({ variant: 'outline' })}>
+          Go Home
         </Link>
       </div>
     </div>
