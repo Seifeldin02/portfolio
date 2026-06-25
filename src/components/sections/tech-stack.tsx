@@ -8,19 +8,14 @@ import { Section, SectionHeader } from '@/components/ui/section';
 const stackGroups = [
   {
     title: 'Product frontend',
-    description: 'Responsive UI, form states, navigation, data loading, and readable components.',
-    items: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Zustand'],
+    description:
+      'Screens, forms, routing, state, and responsive behavior that can survive changes.',
+    items: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS'],
   },
   {
-    title: 'Full-stack delivery',
-    description: 'Admin modules, validation, API contracts, server routes, and persistence.',
-    items: [
-      'Laravel',
-      'Livewire',
-      'Next.js route handlers',
-      'Firestore contact storage',
-      'REST APIs',
-    ],
+    title: 'Workflow and backend support',
+    description: 'Admin modules, validations, API contracts, server routes, and data persistence.',
+    items: ['Laravel', 'Livewire', 'REST APIs', 'Firestore contact storage'],
   },
   {
     title: 'Engineering workflow',
@@ -45,7 +40,10 @@ export function TechStack() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12">
         {stackGroups.map((group) => (
-          <article key={group.title} className="rounded-xl border border-border bg-surface p-6">
+          <article
+            key={group.title}
+            className="rounded-xl border border-border bg-surface p-6 transition-all duration-200 hover:border-accent/30 hover:shadow-sm motion-reduce:transition-none"
+          >
             <div className="mb-4 inline-flex rounded-lg bg-accent-subtle p-2.5">
               <Layers3 size={20} className="text-accent" aria-hidden="true" />
             </div>

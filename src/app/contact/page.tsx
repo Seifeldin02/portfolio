@@ -106,7 +106,7 @@ export default function Contact() {
                   href={method.href}
                   target={method.href.startsWith('mailto') ? undefined : '_blank'}
                   rel={method.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
-                  className="flex items-center gap-4 p-4 rounded-xl border border-border bg-surface hover:border-accent/30 transition-colors"
+                  className="flex items-center gap-4 p-4 rounded-xl border border-border bg-surface hover:border-accent/40 hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
                 >
                   <div className="p-2.5 rounded-lg bg-accent-subtle">
                     <Icon size={20} className="text-accent" aria-hidden="true" />
@@ -122,7 +122,7 @@ export default function Contact() {
             <a
               href={siteConfig.resumePath}
               download
-              className="flex items-center gap-4 p-4 rounded-xl border border-border bg-surface hover:border-accent/30 transition-colors"
+              className="flex items-center gap-4 p-4 rounded-xl border border-border bg-surface hover:border-accent/40 hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
             >
               <div className="p-2.5 rounded-lg bg-surface-muted">
                 <Download size={20} className="text-foreground" aria-hidden="true" />
@@ -137,7 +137,7 @@ export default function Contact() {
               Prefer email?{' '}
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="text-accent hover:text-accent-hover"
+                className="rounded-sm text-accent hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
               >
                 {siteConfig.email}
               </a>

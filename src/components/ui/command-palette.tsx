@@ -205,7 +205,7 @@ export function CommandPaletteTrigger() {
   return (
     <button
       onClick={open}
-      className="hidden md:flex items-center gap-2 px-3 py-1.5 text-sm text-muted bg-surface-muted rounded-lg border border-border hover:border-accent/30 transition-colors"
+      className="hidden md:flex items-center gap-2 px-3 py-1.5 text-sm text-muted bg-surface-muted rounded-lg border border-border hover:border-accent/40 hover:text-foreground transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
       aria-label="Open search"
     >
       <Search size={14} />

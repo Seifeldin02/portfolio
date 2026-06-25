@@ -10,15 +10,15 @@ import { fadeUp, staggerContainer } from '@/lib/motion';
 import { siteConfig } from '@/lib/site-config';
 
 const heroMetrics = [
-  { label: 'Frontend', value: 'React, TypeScript, Tailwind' },
-  { label: 'Full stack', value: 'Laravel, Livewire, APIs' },
-  { label: 'Data', value: 'MySQL, Firestore, SQL' },
+  { label: 'Frontend implementation', value: 'React, TypeScript, Tailwind' },
+  { label: 'Workflow logic', value: 'Forms, validation, state' },
+  { label: 'Backend touchpoints', value: 'Laravel, APIs, Firestore' },
 ];
 
 const proofRows = [
-  'React and TypeScript frontend work in production product teams',
-  'Laravel and Livewire admin modules with data tables and role-aware flows',
-  'Academic Java, Firebase, and web application projects with public repositories',
+  'Product UI work across social commerce screens, API states, and responsive flows',
+  'Laravel and Livewire operations modules with admin tables, content flows, and handover fixes',
+  'Academic systems with public source where the implementation can be reviewed',
 ];
 
 export function HeroSection() {
@@ -47,14 +47,14 @@ export function HeroSection() {
               <h1 className="text-4xl sm:text-5xl lg:text-[3.45rem] font-semibold tracking-tight text-foreground leading-[1.08]">
                 {siteConfig.name}{' '}
                 <span className="mt-2 block text-balance text-muted">
-                  frontend-focused full-stack engineer.
+                  turns complex workflows into clear product features.
                 </span>
               </h1>
 
               <p className="text-lg text-muted leading-relaxed max-w-2xl">
-                I work across React, TypeScript, Laravel, and API-driven interfaces. My strongest
-                work is turning real workflows into clear screens, reliable forms, and maintainable
-                frontend code.
+                I work mostly in React and TypeScript, with Laravel and API work when the flow needs
+                backend support. Most of my work sits around forms, validation, integrations, admin
+                screens, and product flows that need to stay understandable after handoff.
               </p>
             </div>
 
@@ -100,7 +100,7 @@ export function HeroSection() {
                   href={siteConfig.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg text-muted hover:text-foreground hover:bg-surface-muted transition-colors"
+                  className="p-2.5 rounded-lg text-muted hover:text-foreground hover:bg-surface-muted hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
                   aria-label="GitHub profile"
                 >
                   <Code size={20} />
@@ -109,14 +109,14 @@ export function HeroSection() {
                   href={siteConfig.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg text-muted hover:text-foreground hover:bg-surface-muted transition-colors"
+                  className="p-2.5 rounded-lg text-muted hover:text-foreground hover:bg-surface-muted hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
                   aria-label="LinkedIn profile"
                 >
                   <Share2 size={20} />
                 </a>
                 <a
                   href={`mailto:${siteConfig.email}`}
-                  className="p-2.5 rounded-lg text-muted hover:text-foreground hover:bg-surface-muted transition-colors"
+                  className="p-2.5 rounded-lg text-muted hover:text-foreground hover:bg-surface-muted hover:-translate-y-0.5 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
                   aria-label="Send email"
                 >
                   <Mail size={20} />
@@ -130,13 +130,11 @@ export function HeroSection() {
             className="rounded-lg border border-border bg-surface p-5 shadow-sm min-w-0"
             aria-label="Portfolio summary"
           >
-            <p className="text-xs font-medium uppercase tracking-wide text-accent">
-              What to look for
-            </p>
-            <h2 className="mt-2 text-xl font-semibold text-foreground">Evidence over buzzwords</h2>
+            <p className="text-xs font-medium uppercase tracking-wide text-accent">Work samples</p>
+            <h2 className="mt-2 text-xl font-semibold text-foreground">A practical range</h2>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              The portfolio focuses on verifiable projects, source links where available, and clear
-              notes where company work is confidential.
+              The strongest examples are frontend product work, Laravel operations modules, and
+              academic systems with source or implementation notes.
             </p>
             <ul className="mt-5 space-y-3">
               {proofRows.map((row) => (
@@ -147,7 +145,7 @@ export function HeroSection() {
               ))}
             </ul>
             <div className="mt-6 border-t border-border pt-4 text-sm text-muted">
-              Public repositories are linked only for projects that can be verified.
+              Project pages separate public repositories from confidential company work.
             </div>
           </motion.aside>
         </motion.div>

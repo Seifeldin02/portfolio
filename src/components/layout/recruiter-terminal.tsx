@@ -1,0 +1,180 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { motion, useReducedMotion } from 'framer-motion';
+import { Terminal, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { buttonClassName } from '@/components/ui/button';
+
+const STORAGE_KEY = 'seif-portfolio-terminal-seen';
+const SESSION_PATHS_KEY = 'seif-portfolio-terminal-paths';
+const SESSION_STARTED_KEY = 'seif-portfolio-terminal-started';
+const MINIMUM_VISIT_MS = 25000;
+const MINIMUM_PATHS = 3;
+
+function readSessionPaths() {
+  try {
+    const parsed: unknown = JSON.parse(sessionStorage.getItem(SESSION_PATHS_KEY) ?? '[]');
+    if (!Array.isArray(parsed)) {
+      return new Set<string>();
+    }
+
+    return new Set(parsed.filter((item): item is string => typeof item === 'string'));
+  } catch {
+    return new Set<string>();
+  }
+}
+
+export function RecruiterTerminal() {
+  const pathname = usePathname();
+  const reduceMotion = useReducedMotion();
+  const [showPrompt, setShowPrompt] = useState(false);
+  const [open, setOpen] = useState(false);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (localStorage.getItem(STORAGE_KEY)) {
+      return;
+    }
+
+    const startedAt = Number(sessionStorage.getItem(SESSION_STARTED_KEY) ?? Date.now());
+    sessionStorage.setItem(SESSION_STARTED_KEY, String(startedAt));
+
+    const paths = readSessionPaths();
+    paths.add(pathname);
+    sessionStorage.setItem(SESSION_PATHS_KEY, JSON.stringify([...paths]));
+
+    const remainingTime = Math.max(0, MINIMUM_VISIT_MS - (Date.now() - startedAt));
+    const timer = window.setTimeout(() => {
+      const latestPaths = readSessionPaths();
+      if (!localStorage.getItem(STORAGE_KEY) && latestPaths.size >= MINIMUM_PATHS) {
+        localStorage.setItem(STORAGE_KEY, 'true');
+        setShowPrompt(true);
+      }
+    }, remainingTime);
+
+    return () => window.clearTimeout(timer);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (open) {
+      closeButtonRef.current?.focus();
+    }
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        setShowPrompt(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [open]);
+
+  const dismiss = () => {
+    setOpen(false);
+    setShowPrompt(false);
+  };
+
+  return (
+    <>
+      {showPrompt && !open ? (
+        <motion.div
+          className="fixed inset-x-3 bottom-4 z-[80] mx-auto max-w-sm rounded-lg border border-border bg-surface p-3 shadow-lg sm:left-auto sm:right-4 sm:mx-0"
+          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={reduceMotion ? undefined : { opacity: 0, y: 8 }}
+          transition={{ duration: reduceMotion ? 0 : 0.2 }}
+          role="status"
+          aria-live="polite"
+        >
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              className="group flex min-w-0 flex-1 items-center gap-2 rounded-md text-left font-mono text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              aria-label="Open portfolio terminal note"
+            >
+              <Terminal size={16} className="shrink-0 text-accent" aria-hidden="true" />
+              <span className="truncate">recruiter_detected@portfolio:~$</span>
+              <span className="text-accent motion-safe:animate-pulse" aria-hidden="true">
+                _
+              </span>
+            </button>
+            <button
+              type="button"
+              onClick={dismiss}
+              className="rounded-md p-1.5 text-muted transition-colors hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              aria-label="Dismiss terminal note"
+            >
+              <X size={16} aria-hidden="true" />
+            </button>
+          </div>
+        </motion.div>
+      ) : null}
+
+      {open ? (
+        <div className="fixed inset-0 z-[90] flex items-end justify-center bg-black/35 px-3 py-4 sm:items-center">
+          <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="portfolio-terminal-title"
+            className="w-full max-w-lg overflow-hidden rounded-lg border border-border bg-surface shadow-2xl"
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reduceMotion ? 0 : 0.2 }}
+          >
+            <div className="flex items-center justify-between border-b border-border px-4 py-3">
+              <div className="flex items-center gap-2">
+                <Terminal size={17} className="text-accent" aria-hidden="true" />
+                <h2 id="portfolio-terminal-title" className="font-mono text-sm text-foreground">
+                  portfolio terminal
+                </h2>
+              </div>
+              <button
+                type="button"
+                ref={closeButtonRef}
+                onClick={dismiss}
+                className="rounded-md p-1.5 text-muted transition-colors hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                aria-label="Close terminal note"
+              >
+                <X size={16} aria-hidden="true" />
+              </button>
+            </div>
+
+            <div className="space-y-2 px-4 py-5 font-mono text-sm leading-relaxed">
+              <p className="text-accent">$ workflow_review --summary</p>
+              <p className="text-foreground">Reviewed: projects, credential, contact route.</p>
+              <p className="text-muted">Next step: send a message if the fit looks real.</p>
+            </div>
+
+            <div className="flex flex-col-reverse gap-2 border-t border-border px-4 py-4 sm:flex-row sm:justify-end">
+              <button
+                type="button"
+                onClick={dismiss}
+                className={buttonClassName({ variant: 'outline', className: 'w-full sm:w-auto' })}
+              >
+                Dismiss
+              </button>
+              <Link
+                href="/contact"
+                onClick={dismiss}
+                className={buttonClassName({ className: 'w-full sm:w-auto' })}
+              >
+                Open Contact
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      ) : null}
+    </>
+  );
+}

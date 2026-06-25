@@ -125,7 +125,7 @@ export const education: Education[] = [
         description: 'CGPA Appreciation - Maintained strong academic performance',
       },
       {
-        title: 'AWS Academy Cloud Foundations',
+        title: 'AWS Academy Graduate - Cloud Foundations - Training Badge',
         description: 'Certification in cloud computing and AWS services',
       },
       {

@@ -42,7 +42,7 @@ export function ExperienceHighlights() {
               </div>
 
               <p className="text-sm text-muted mb-3">
-                {exp.startDate} - {exp.endDate} · {exp.location}
+                {exp.startDate} - {exp.endDate} | {exp.location}
               </p>
 
               <p className="text-sm text-foreground leading-relaxed mb-4">{exp.description}</p>

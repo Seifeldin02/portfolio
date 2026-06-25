@@ -45,7 +45,7 @@ export default async function ProjectDetail({ params }: Props) {
         <Container>
           <Link
             href="/projects"
-            className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-accent mb-6 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded-md text-sm text-muted hover:text-accent mb-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
           >
             <ArrowLeft size={16} aria-hidden="true" />
             Back to projects
@@ -76,7 +76,11 @@ export default async function ProjectDetail({ params }: Props) {
                 >
                   <Code size={18} className="mr-2" aria-hidden="true" />
                   View on GitHub
-                  <ExternalLink size={14} className="ml-2" aria-hidden="true" />
+                  <ExternalLink
+                    size={14}
+                    className="ml-2 transition-transform group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
                 </a>
               )}
               {project.proofLinks?.map((link) => (
@@ -89,7 +93,11 @@ export default async function ProjectDetail({ params }: Props) {
                 >
                   <Code size={18} className="mr-2" aria-hidden="true" />
                   {link.label}
-                  <ExternalLink size={14} className="ml-2" aria-hidden="true" />
+                  <ExternalLink
+                    size={14}
+                    className="ml-2 transition-transform group-hover:translate-x-0.5"
+                    aria-hidden="true"
+                  />
                 </a>
               ))}
               {project.liveUrl && (
@@ -246,7 +254,11 @@ export default async function ProjectDetail({ params }: Props) {
             <h2 className="text-2xl font-semibold text-foreground mb-6">Other projects</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {related.map((relatedProject) => (
-                <Link key={relatedProject.id} href={`/projects/${relatedProject.slug}`}>
+                <Link
+                  key={relatedProject.id}
+                  href={`/projects/${relatedProject.slug}`}
+                  className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                >
                   <Card hover className="p-5 h-full">
                     <Badge variant="outline" className="text-xs mb-2">
                       {relatedProject.status}

@@ -45,7 +45,7 @@ export function Navbar() {
         <div className="flex justify-between items-center h-16">
           <Link
             href="/"
-            className="flex items-center gap-2.5 font-semibold text-foreground min-w-0"
+            className="flex items-center gap-2.5 font-semibold text-foreground min-w-0 rounded-lg transition-opacity hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
           >
             <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shrink-0">
               <span className="text-white text-sm font-bold">SM</span>
@@ -62,7 +62,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    'px-3 py-2 rounded-lg text-sm font-medium transition-colors',
+                    'px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ease-out hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0',
                     isActive
                       ? 'text-accent bg-accent-subtle'
                       : 'text-muted hover:text-foreground hover:bg-surface-muted'
@@ -79,7 +79,7 @@ export function Navbar() {
             <CommandPaletteTrigger />
             <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-lg text-muted hover:text-foreground hover:bg-surface-muted transition-colors"
+              className="p-2 rounded-lg text-muted hover:text-foreground hover:bg-surface-muted transition-all duration-200 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
@@ -87,7 +87,7 @@ export function Navbar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-lg text-muted hover:bg-surface-muted"
+              className="md:hidden p-2 rounded-lg text-muted hover:text-foreground hover:bg-surface-muted transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isOpen}
             >
@@ -106,7 +106,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    'block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors',
+                    'block px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
                     isActive
                       ? 'text-accent bg-accent-subtle'
                       : 'text-muted hover:text-foreground hover:bg-surface-muted'

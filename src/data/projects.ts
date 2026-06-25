@@ -157,13 +157,13 @@ export const projects: Project[] = [
       'Coordinating Spring MVC controllers, JSP views, Hibernate models, and MySQL persistence',
       'Separating user and staff navigation while keeping shared profile and application flows understandable',
       'Rendering carbon usage data through JSP variables and Chart.js scripts',
-      'Handling file uploads, mail logic, and session-driven account state in a Java web app',
+      'Handling file uploads, mail logic, and session-based account state in a Java web app',
     ],
     keyAccomplishments: [
       'Implemented user and staff dashboard, profile, login, register, forgot password, and application views',
       'Built Java model, repository, service, and controller layers for the application',
       'Connected Hibernate and MySQL configuration for persistent entities',
-      'Added Carbon Analysis UI with Chart.js driven usage charts',
+      'Added Carbon Analysis UI with Chart.js powered usage charts',
     ],
     technicalDecisions: [
       'Used Spring MVC and JSP because the course project focused on Java web programming patterns',

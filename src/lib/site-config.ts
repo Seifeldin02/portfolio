@@ -4,7 +4,7 @@ export const siteConfig = {
   title: 'Software Engineer',
   subtitle: 'Frontend & Full-Stack Developer',
   description:
-    'Software engineer with hands-on experience building enterprise web applications using React, Laravel, and RESTful APIs across teams in Egypt, Malaysia, and the US.',
+    'Software engineer with hands-on experience building React, TypeScript, Laravel, and API-backed web applications across internship, contract, and academic projects.',
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000',
   email: 'seifeldinmahmoud2002@gmail.com',
   github: 'https://github.com/Seifeldin02',

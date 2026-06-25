@@ -1,14 +1,10 @@
 # Seifeldin Mahmoud Portfolio
 
-This is my personal software engineering portfolio. I built it to give recruiters and engineering teams a clear view of my technical background, project work, experience, and contact information.
+This is my personal software engineering portfolio. It presents my background, project work, experience, skills, resume, and contact information in one place.
 
-## Overview
+The site is intentionally simple. Most content lives in local TypeScript data files so project claims, links, screenshots, and experience details can be reviewed before they are published.
 
-The site is a Next.js portfolio with dedicated pages for my background, experience, projects, skills, and contact details. Most content is stored in local TypeScript data files so the structure stays easy to review and update.
-
-The contact form is backed by Firebase Firestore through a server-side API route. Firebase Admin credentials stay on the server and are configured through environment variables.
-
-## Tech Stack
+## Stack
 
 - Next.js App Router
 - React
@@ -19,19 +15,20 @@ The contact form is backed by Firebase Firestore through a server-side API route
 - Firestore
 - Zod
 - React Hook Form
-- ESLint and Prettier
+- ESLint, Prettier, and Vitest
 
-## Features
+## Current Features
 
 - Home, About, Experience, Projects, Skills, and Contact pages
-- Project listing and project detail pages
-- Search and filtering on the Projects page
-- Dark mode
-- Command palette
+- Project listing, filtering, and project detail pages
+- Compact certification section with public verification link
+- Dark and light theme support
+- Command palette for quick navigation
+- Optional terminal-style note that appears after meaningful browsing
 - Server-side contact form validation
 - Firestore storage for contact submissions
 - Sitemap, robots file, metadata, and structured data
-- Consistent route transition animation across pages
+- Subtle route transitions across pages
 
 ## Project Structure
 
@@ -51,22 +48,12 @@ src/
   data/                Portfolio content
   lib/                 Shared utilities, Firebase Admin, site config
 public/
+  certifications/      Certification badge images
+  projects/            Project preview images
   resume.pdf           Downloadable resume
+docs/
+  maintenance.md       Update checklist
 ```
-
-## Firebase Setup
-
-The contact form writes submissions to a Firestore collection named `contactMessages`.
-
-Create a Firebase project, generate a Firebase Admin SDK service account, and copy the needed values into `.env.local`. Do not commit the service account JSON file or any private key values.
-
-Expected Firestore document fields:
-
-- `name`
-- `email`
-- `subject`
-- `message`
-- `createdAt`
 
 ## Environment Variables
 
@@ -79,7 +66,9 @@ FIREBASE_CLIENT_EMAIL=your_firebase_client_email
 FIREBASE_PRIVATE_KEY="your_private_key_with_escaped_newlines"
 ```
 
-For `FIREBASE_PRIVATE_KEY`, keep newline characters escaped as `\n` inside the environment variable.
+`FIREBASE_PRIVATE_KEY` should keep newline characters escaped as `\n`.
+
+The Firebase variables are used only by the server-side contact route. Do not commit service account JSON files, `.env`, `.env.local`, or private keys.
 
 ## Running Locally
 
@@ -88,19 +77,41 @@ pnpm install
 pnpm dev
 ```
 
-Then open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000).
 
-## Build and Deployment
-
-Run the production build locally before deploying:
+## Quality Checks
 
 ```bash
+pnpm format:check
+pnpm lint:check
+pnpm typecheck
 pnpm build
-pnpm start
+pnpm test
 ```
 
-For deployment, configure the same environment variables in the hosting provider. The project is ready to deploy once the Firebase values and public site URL are set.
+The combined local verification command is:
 
-## Contact
+```bash
+pnpm verify
+```
 
-The portfolio links to my email, GitHub, LinkedIn, and resume from the Contact page.
+GitHub Actions runs `pnpm verify` and `pnpm test` on pushes and pull requests to `main`.
+
+## Updating The Portfolio
+
+- Main project content: `src/data/projects.ts`
+- Experience and education: `src/data/experience.ts`
+- Skills: `src/data/skills.ts`
+- Certifications: `src/data/certifications.ts`
+- Site identity and links: `src/lib/site-config.ts`
+- Certification badge images: `public/certifications/`
+- Project screenshots: `public/projects/`
+- Resume file: `public/resume.pdf`
+
+Use [docs/maintenance.md](docs/maintenance.md) before pushing updates. Keep public claims tied to real work, public repos, screenshots, documents, or clearly marked confidential experience.
+
+## Deployment
+
+Run `pnpm verify` before deployment. Configure the same environment variables in the hosting provider, including `NEXT_PUBLIC_SITE_URL` for the production URL.
+
+The contact form writes valid submissions to the Firestore collection `contactMessages`.

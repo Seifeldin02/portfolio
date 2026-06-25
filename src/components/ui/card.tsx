@@ -9,12 +9,13 @@ export function Card({ className, hover = false, variant = 'default', ...props }
   return (
     <div
       className={cn(
-        'rounded-lg transition-all duration-200',
+        'rounded-lg transition-all duration-200 ease-out',
         {
           'bg-surface border border-border': variant === 'default',
           'bg-surface border border-border shadow-sm': variant === 'elevated',
           'bg-transparent border border-border': variant === 'outline',
-          'hover:-translate-y-0.5 hover:shadow-md hover:border-accent/30 cursor-pointer': hover,
+          'hover:-translate-y-0.5 hover:shadow-md hover:border-accent/30 focus-within:border-accent/40 motion-reduce:hover:translate-y-0 cursor-pointer':
+            hover,
         },
         className
       )}

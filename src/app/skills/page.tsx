@@ -3,7 +3,8 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Container } from '@/components/ui/container';
 import { Section, SectionHeader } from '@/components/ui/section';
-import { skillsData, certifications } from '@/data/skills';
+import { certifications } from '@/data/certifications';
+import { skillsData } from '@/data/skills';
 import { siteConfig } from '@/lib/site-config';
 
 export const metadata: Metadata = {
@@ -125,9 +126,7 @@ export default function Skills() {
             {certifications.map((cert) => (
               <Card key={cert.id} className="p-5">
                 <h3 className="font-semibold text-foreground mb-1">{cert.title}</h3>
-                <p className="text-sm text-muted mb-2">
-                  {cert.issuer} · {cert.date}
-                </p>
+                <p className="text-sm text-muted mb-2">{cert.issuer}</p>
                 <p className="text-sm text-muted leading-relaxed">{cert.description}</p>
               </Card>
             ))}

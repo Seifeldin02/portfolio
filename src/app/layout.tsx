@@ -8,6 +8,7 @@ import { StructuredData } from '@/components/ui/structured-data';
 import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { PageTransition } from '@/components/layout/page-transition';
+import { RecruiterTerminal } from '@/components/layout/recruiter-terminal';
 import { siteConfig } from '@/lib/site-config';
 
 const geistSans = Geist({
@@ -79,6 +80,7 @@ export default function RootLayout({
               <Navbar />
               <PageTransition>{children}</PageTransition>
               <Footer />
+              <RecruiterTerminal />
             </CommandPaletteProvider>
           </ToastProvider>
         </ThemeProvider>

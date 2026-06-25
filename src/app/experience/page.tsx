@@ -55,7 +55,7 @@ export default function Experience() {
                 </div>
 
                 <p className="text-sm text-muted mb-4">
-                  {experience.startDate} - {experience.endDate} · {experience.location}
+                  {experience.startDate} - {experience.endDate} | {experience.location}
                 </p>
 
                 <p className="text-foreground leading-relaxed mb-5">{experience.description}</p>

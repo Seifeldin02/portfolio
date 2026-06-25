@@ -30,7 +30,10 @@ export function FeaturedProjects() {
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.35, delay: index * 0.05 }}
           >
-            <Link href={`/projects/${project.slug}`} className="block h-full group">
+            <Link
+              href={`/projects/${project.slug}`}
+              className="block h-full rounded-lg group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            >
               <Card hover variant="elevated" className="h-full overflow-hidden">
                 <ProjectVisualPanel
                   title={project.title}

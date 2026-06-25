@@ -92,35 +92,3 @@ export const skillsData: SkillCategory[] = [
     ],
   },
 ];
-
-export interface Certification {
-  id: string;
-  title: string;
-  issuer: string;
-  date: string;
-  description: string;
-}
-
-export const certifications: Certification[] = [
-  {
-    id: 'aws-cloud',
-    title: 'AWS Academy Cloud Foundations',
-    issuer: 'Amazon Web Services',
-    date: '2024',
-    description: 'Foundational knowledge of AWS cloud services and architecture',
-  },
-  {
-    id: 'ielts',
-    title: 'IELTS - Overall Band 7.5',
-    issuer: 'IDP IELTS',
-    date: '2024',
-    description: 'Strong English proficiency for international engineering collaboration',
-  },
-  {
-    id: 'cgpa',
-    title: 'CGPA Appreciation - 3.6/4.0',
-    issuer: 'Universiti Teknologi Malaysia',
-    date: '2025',
-    description: 'Academic recognition for Software Engineering coursework',
-  },
-];

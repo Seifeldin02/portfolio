@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { FieldValue } from 'firebase-admin/firestore';
-import { adminDb } from '@/lib/firebase-admin';
+import { getAdminDb } from '@/lib/firebase-admin';
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     const data = validation.data;
     const submittedAt = new Date().toISOString();
 
-    await adminDb.collection('contactMessages').add({
+    await getAdminDb().collection('contactMessages').add({
       name: data.name,
       email: data.email,
       subject: data.subject,

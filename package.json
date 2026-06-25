@@ -7,9 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx,json,md}\"",
+    "lint:check": "eslint .",
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,md}\" \"*.md\" \"docs/**/*.md\" \".github/**/*.yml\" \"package.json\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,json,md}\" \"*.md\" \"docs/**/*.md\" \".github/**/*.yml\" \"package.json\"",
     "typecheck": "tsc --noEmit",
     "type-check": "tsc --noEmit",
+    "verify": "npm run format:check && npm run lint:check && npm run typecheck && npm run build",
     "test": "vitest --passWithNoTests",
     "test:ui": "vitest --ui"
   },
