@@ -15,18 +15,12 @@ const heroMetrics = [
   { label: 'Backend touchpoints', value: 'Laravel, APIs, Firestore' },
 ];
 
-const proofRows = [
-  'Product UI work across social commerce screens, API states, and responsive flows',
-  'Laravel and Livewire operations modules with admin tables, content flows, and handover fixes',
-  'Academic systems with public source where the implementation can be reviewed',
-];
-
 export function HeroSection() {
   return (
     <section className="border-b border-border pt-20 pb-10 sm:pt-24 sm:pb-10">
       <Container size="wide">
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-10 items-start"
+          className="max-w-4xl space-y-6"
           variants={staggerContainer}
           initial="initial"
           animate="animate"
@@ -124,30 +118,6 @@ export function HeroSection() {
               </div>
             </div>
           </motion.div>
-
-          <motion.aside
-            variants={fadeUp}
-            className="rounded-lg border border-border bg-surface p-5 shadow-sm min-w-0"
-            aria-label="Portfolio summary"
-          >
-            <p className="text-xs font-medium uppercase tracking-wide text-accent">Work samples</p>
-            <h2 className="mt-2 text-xl font-semibold text-foreground">A practical range</h2>
-            <p className="mt-3 text-sm leading-relaxed text-muted">
-              The strongest examples are frontend product work, Laravel operations modules, and
-              academic systems with source or implementation notes.
-            </p>
-            <ul className="mt-5 space-y-3">
-              {proofRows.map((row) => (
-                <li key={row} className="flex gap-3 text-sm text-muted">
-                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
-                  <span>{row}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-6 border-t border-border pt-4 text-sm text-muted">
-              Project pages separate public repositories from confidential company work.
-            </div>
-          </motion.aside>
         </motion.div>
       </Container>
     </section>

@@ -24,6 +24,7 @@ The site is intentionally simple. Most content lives in local TypeScript data fi
 - Compact credential section with public verification links
 - Dark and light theme support
 - Command palette for quick navigation
+- Small portfolio pulse with total visits and active visitors
 - Rare hidden terminal button that appears after meaningful browsing
 - Server-side contact form validation
 - Firestore storage for contact submissions
@@ -112,6 +113,28 @@ Use [docs/maintenance.md](docs/maintenance.md) before pushing updates. Keep publ
 
 ## Deployment
 
-Run `pnpm verify` before deployment. Configure the same environment variables in the hosting provider, including `NEXT_PUBLIC_SITE_URL` for the production URL.
+Production is deployed on Vercel from the `deploy/vercel-production` branch. Vercel auto-detects this as a Next.js app from `next.config.ts`, `package.json`, and `pnpm-lock.yaml`.
 
-The contact form writes valid submissions to the Firestore collection `contactMessages`.
+Use these commands before deploying:
+
+```bash
+pnpm install --frozen-lockfile
+pnpm verify
+pnpm test
+pnpm dlx vercel@latest --prod
+```
+
+Configure these environment variables in Vercel for production:
+
+```bash
+NEXT_PUBLIC_SITE_URL
+FIREBASE_PROJECT_ID
+FIREBASE_CLIENT_EMAIL
+FIREBASE_PRIVATE_KEY
+```
+
+`NEXT_PUBLIC_SITE_URL` must be the public Vercel URL so metadata, sitemap, and robots output use the production host. The Firebase variables are server-only and power the contact form plus portfolio pulse.
+
+Future updates should be merged or cherry-picked onto `deploy/vercel-production`, verified with `pnpm verify` and `pnpm test`, pushed to GitHub, then deployed with `pnpm dlx vercel@latest --prod`.
+
+The contact form writes valid submissions to the Firestore collection `contactMessages`. The portfolio pulse uses `portfolioStats` and `portfolioPresence` for visit counts and active visitor heartbeats.

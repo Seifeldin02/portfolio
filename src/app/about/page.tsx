@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { buttonClassName } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
+import { RevealGroup, RevealItem, RevealOnView } from '@/components/layout/reveal';
 import { Section, SectionHeader } from '@/components/ui/section';
 import { education } from '@/data/experience';
 import { siteConfig } from '@/lib/site-config';
@@ -19,17 +20,25 @@ export default function About() {
     <>
       <section className="pt-28 pb-8 sm:pt-32">
         <Container size="narrow">
-          <p className="text-sm font-medium uppercase tracking-wide text-accent mb-3">About</p>
-          <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground mb-6">
-            Practical web engineering, with a frontend focus
-          </h1>
-          <p className="text-lg text-muted leading-relaxed">{siteConfig.description}</p>
+          <RevealGroup>
+            <RevealItem>
+              <p className="text-sm font-medium uppercase tracking-wide text-accent mb-3">About</p>
+            </RevealItem>
+            <RevealItem>
+              <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground mb-6">
+                Practical web engineering, with a frontend focus
+              </h1>
+            </RevealItem>
+            <RevealItem>
+              <p className="text-lg text-muted leading-relaxed">{siteConfig.description}</p>
+            </RevealItem>
+          </RevealGroup>
         </Container>
       </section>
 
       <Section muted>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-          <div className="min-w-0">
+          <RevealOnView>
             <h2 className="text-2xl font-semibold text-foreground mb-4">Background</h2>
             <div className="space-y-4 text-muted leading-relaxed">
               <p>
@@ -44,9 +53,9 @@ export default function About() {
                 tables, content flows, tickets, localization, menus, and schema-related fixes.
               </p>
             </div>
-          </div>
+          </RevealOnView>
 
-          <div className="min-w-0">
+          <RevealOnView delay={0.08}>
             <h2 className="text-2xl font-semibold text-foreground mb-4">What I focus on</h2>
             <div className="space-y-4 text-muted leading-relaxed">
               <p>
@@ -62,7 +71,7 @@ export default function About() {
                 understandable for the next developer.
               </p>
             </div>
-          </div>
+          </RevealOnView>
         </div>
       </Section>
 
@@ -75,49 +84,55 @@ export default function About() {
 
         <div className="space-y-4">
           {education.map((edu) => (
-            <Card key={edu.id} className="p-6">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-4">
-                <div className="min-w-0">
-                  <h3 className="text-lg font-semibold text-foreground">{edu.degree}</h3>
-                  <p className="text-muted">{edu.institution}</p>
+            <RevealOnView key={edu.id}>
+              <Card className="p-6">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-4">
+                  <div className="min-w-0">
+                    <h3 className="text-lg font-semibold text-foreground">{edu.degree}</h3>
+                    <p className="text-muted">{edu.institution}</p>
+                  </div>
+                  <div className="text-sm text-muted shrink-0">
+                    <p>
+                      {edu.startDate} - {edu.endDate}
+                    </p>
+                    <p>{edu.location}</p>
+                  </div>
                 </div>
-                <div className="text-sm text-muted shrink-0">
-                  <p>
-                    {edu.startDate} - {edu.endDate}
-                  </p>
-                  <p>{edu.location}</p>
+                <div className="flex flex-wrap gap-2">
+                  {edu.achievements.map((achievement) => (
+                    <Badge key={achievement.title} variant="accent">
+                      {achievement.title}
+                    </Badge>
+                  ))}
                 </div>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {edu.achievements.map((achievement) => (
-                  <Badge key={achievement.title} variant="accent">
-                    {achievement.title}
-                  </Badge>
-                ))}
-              </div>
-              {edu.verificationUrl ? (
-                <a
-                  href={edu.verificationUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={buttonClassName({ variant: 'outline', size: 'sm', className: 'mt-5' })}
-                >
-                  Verify degree
-                  <ExternalLink size={14} className="ml-1.5" aria-hidden="true" />
-                </a>
-              ) : null}
-            </Card>
+                {edu.verificationUrl ? (
+                  <a
+                    href={edu.verificationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={buttonClassName({
+                      variant: 'outline',
+                      size: 'sm',
+                      className: 'mt-5',
+                    })}
+                  >
+                    Verify degree
+                    <ExternalLink size={14} className="ml-1.5" aria-hidden="true" />
+                  </a>
+                ) : null}
+              </Card>
+            </RevealOnView>
           ))}
         </div>
 
-        <div className="mt-10 flex flex-wrap gap-3">
+        <RevealOnView className="mt-10 flex flex-wrap gap-3">
           <Link href="/projects" className={buttonClassName()}>
             View Projects
           </Link>
           <Link href="/contact" className={buttonClassName({ variant: 'outline' })}>
             Contact Me
           </Link>
-        </div>
+        </RevealOnView>
       </Section>
     </>
   );

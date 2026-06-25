@@ -22,6 +22,7 @@
 
 # misc
 .DS_Store
+*.vsix
 *.pem
 serviceAccountKey.json
 firebase-adminsdk.json

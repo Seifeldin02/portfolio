@@ -12,7 +12,7 @@ export function ContactCTA() {
           <div className="min-w-0">
             <p className="text-sm font-medium uppercase tracking-wide text-accent mb-2">Contact</p>
             <h2 className="text-3xl font-semibold text-foreground mb-3">
-              Open to frontend and software engineering roles
+              Open to most software engineering roles, willing to learn.
             </h2>
             <p className="text-muted leading-relaxed">
               I&apos;m available for roles where I can contribute from UI implementation through API

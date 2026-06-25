@@ -2,10 +2,10 @@
 
 import { motion, useReducedMotion } from 'framer-motion';
 import { usePathname } from 'next/navigation';
+import { fadeUp } from '@/lib/motion';
 
 const routeTransition = {
-  duration: 0.22,
-  ease: [0.22, 1, 0.36, 1] as const,
+  ...fadeUp.transition,
 };
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
@@ -15,10 +15,11 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   return (
     <motion.main
       key={pathname}
-      className="flex-1"
-      initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-      animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+      className="flex-1 transform-gpu"
+      initial={reduceMotion ? false : fadeUp.initial}
+      animate={reduceMotion ? { opacity: 1 } : fadeUp.animate}
       transition={reduceMotion ? { duration: 0 } : routeTransition}
+      style={reduceMotion ? undefined : { willChange: 'opacity, transform' }}
     >
       {children}
     </motion.main>

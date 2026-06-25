@@ -8,6 +8,7 @@ import { projects } from '@/data/projects';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Container } from '@/components/ui/container';
+import { RevealGroup, RevealItem, RevealOnView } from '@/components/layout/reveal';
 import { Section } from '@/components/ui/section';
 
 export default function ProjectsPage() {
@@ -32,19 +33,30 @@ export default function ProjectsPage() {
     <>
       <section className="pt-28 pb-8 sm:pt-32">
         <Container size="narrow">
-          <p className="text-sm font-medium uppercase tracking-wide text-accent mb-3">Projects</p>
-          <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground mb-6">
-            Engineering case studies
-          </h1>
-          <p className="text-lg text-muted leading-relaxed">
-            Academic, internship, and enterprise work with public repositories where available and
-            clear confidentiality notes where work cannot be shared.
-          </p>
+          <RevealGroup>
+            <RevealItem>
+              <p className="text-sm font-medium uppercase tracking-wide text-accent mb-3">
+                Projects
+              </p>
+            </RevealItem>
+            <RevealItem>
+              <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground mb-6">
+                Engineering case studies
+              </h1>
+            </RevealItem>
+            <RevealItem>
+              <p className="text-lg text-muted leading-relaxed">
+                A focused look at my academic, internship, and enterprise work. I link public
+                repositories where I can share them and keep confidential work clear without private
+                details.
+              </p>
+            </RevealItem>
+          </RevealGroup>
         </Container>
       </section>
 
       <Section>
-        <div className="flex flex-col gap-4 mb-8">
+        <RevealOnView className="flex flex-col gap-4 mb-8">
           <div className="flex-1 relative min-w-0">
             <Search
               className="absolute left-3 top-1/2 -translate-y-1/2 text-muted"
@@ -93,73 +105,76 @@ export default function ProjectsPage() {
               );
             })}
           </div>
-        </div>
+        </RevealOnView>
 
-        <p className="text-sm text-muted mb-6">
-          {filtered.length} project{filtered.length !== 1 ? 's' : ''}
-        </p>
+        <RevealOnView>
+          <p className="text-sm text-muted mb-6">
+            {filtered.length} project{filtered.length !== 1 ? 's' : ''}
+          </p>
+        </RevealOnView>
 
         {filtered.length > 0 ? (
           <div className="space-y-6">
-            {filtered.map((project) => (
-              <Link
-                key={project.id}
-                href={`/projects/${project.slug}`}
-                className="block rounded-lg group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-              >
-                <Card hover variant="elevated" className="overflow-hidden">
-                  <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] min-w-0">
-                    <div className="relative h-48 md:h-auto md:min-h-[200px] bg-surface-muted">
-                      {project.image ? (
-                        <Image
-                          src={project.image}
-                          alt={`${project.title} preview`}
-                          fill
-                          className="object-cover"
-                          sizes="280px"
-                        />
-                      ) : (
-                        <div className="flex items-center justify-center h-full p-6 text-center">
-                          <p className="text-sm text-muted">
-                            {project.mediaNote ?? 'Screenshot unavailable'}
-                          </p>
-                        </div>
-                      )}
-                      <div className="absolute top-3 left-3">
-                        <Badge variant="accent" className="text-xs">
-                          {project.status}
-                        </Badge>
-                      </div>
-                    </div>
-
-                    <div className="p-6 min-w-0">
-                      <h2 className="text-xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
-                        {project.title}
-                      </h2>
-                      <p className="text-sm text-muted mb-3 leading-relaxed">
-                        {project.shortDescription}
-                      </p>
-                      <p className="text-sm text-foreground mb-4 line-clamp-2">
-                        <span className="text-muted">Problem: </span>
-                        {project.problem}
-                      </p>
-                      <div className="flex flex-wrap gap-1.5">
-                        {project.technologies.slice(0, 5).map((tech) => (
-                          <Badge key={tech} variant="outline" className="text-xs">
-                            {tech}
+            {filtered.map((project, index) => (
+              <RevealOnView key={project.id} delay={(index % 2) * 0.05}>
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="block rounded-lg group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                >
+                  <Card hover variant="elevated" className="overflow-hidden">
+                    <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] min-w-0">
+                      <div className="relative h-48 md:h-auto md:min-h-[200px] bg-surface-muted">
+                        {project.image ? (
+                          <Image
+                            src={project.image}
+                            alt={`${project.title} preview`}
+                            fill
+                            className="object-cover"
+                            sizes="280px"
+                          />
+                        ) : (
+                          <div className="flex items-center justify-center h-full p-6 text-center">
+                            <p className="text-sm text-muted">
+                              {project.mediaNote ?? 'Screenshot unavailable'}
+                            </p>
+                          </div>
+                        )}
+                        <div className="absolute top-3 left-3">
+                          <Badge variant="accent" className="text-xs">
+                            {project.status}
                           </Badge>
-                        ))}
+                        </div>
+                      </div>
+
+                      <div className="p-6 min-w-0">
+                        <h2 className="text-xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">
+                          {project.title}
+                        </h2>
+                        <p className="text-sm text-muted mb-3 leading-relaxed">
+                          {project.shortDescription}
+                        </p>
+                        <p className="text-sm text-foreground mb-4 line-clamp-2">
+                          <span className="text-muted">Problem: </span>
+                          {project.problem}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {project.technologies.slice(0, 5).map((tech) => (
+                            <Badge key={tech} variant="outline" className="text-xs">
+                              {tech}
+                            </Badge>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Card>
-              </Link>
+                  </Card>
+                </Link>
+              </RevealOnView>
             ))}
           </div>
         ) : (
-          <div className="text-center py-16">
+          <RevealOnView className="text-center py-16">
             <p className="text-muted">No projects match your search.</p>
-          </div>
+          </RevealOnView>
         )}
       </Section>
     </>

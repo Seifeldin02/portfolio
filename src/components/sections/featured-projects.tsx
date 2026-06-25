@@ -17,8 +17,8 @@ export function FeaturedProjects() {
     <Section divider containerSize="wide">
       <SectionHeader
         eyebrow="Selected work"
-        title="Projects with enough context to review"
-        description="A short set of projects with source links where available and confidentiality notes where company work cannot be opened publicly."
+        title="Selected projects"
+        description="A concise look at work I can explain clearly, with repositories linked where they are public and confidential company details kept private."
       />
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">

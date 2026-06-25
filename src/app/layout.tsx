@@ -9,6 +9,8 @@ import { Navbar } from '@/components/layout/navbar';
 import { Footer } from '@/components/layout/footer';
 import { PageTransition } from '@/components/layout/page-transition';
 import { RecruiterTerminal } from '@/components/layout/recruiter-terminal';
+import { PortfolioStatsTracker } from '@/components/layout/portfolio-stats-tracker';
+import { PortfolioPulse } from '@/components/sections/portfolio-pulse';
 import { siteConfig } from '@/lib/site-config';
 
 const geistSans = Geist({
@@ -80,6 +82,8 @@ export default function RootLayout({
               <Navbar />
               <PageTransition>{children}</PageTransition>
               <Footer />
+              <PortfolioStatsTracker />
+              <PortfolioPulse />
               <RecruiterTerminal />
             </CommandPaletteProvider>
           </ToastProvider>

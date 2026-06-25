@@ -3,6 +3,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { buttonClassName } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
+import { RevealGroup, RevealItem, RevealOnView } from '@/components/layout/reveal';
 import { Section } from '@/components/ui/section';
 import { ExternalLink, Code, ArrowLeft, LockKeyhole } from 'lucide-react';
 import Image from 'next/image';
@@ -43,82 +44,94 @@ export default async function ProjectDetail({ params }: Props) {
     <>
       <section className="pt-28 pb-8 sm:pt-32">
         <Container>
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-1.5 rounded-md text-sm text-muted hover:text-accent mb-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-          >
-            <ArrowLeft size={16} aria-hidden="true" />
-            Back to projects
-          </Link>
+          <RevealGroup>
+            <RevealItem>
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-1.5 rounded-md text-sm text-muted hover:text-accent mb-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              >
+                <ArrowLeft size={16} aria-hidden="true" />
+                Back to projects
+              </Link>
+            </RevealItem>
 
-          <div className="flex flex-wrap gap-2 mb-4">
-            <Badge variant="accent">{project.status}</Badge>
-            <Badge variant="outline" className="capitalize">
-              {project.category.replace('-', ' ')}
-            </Badge>
-          </div>
+            <RevealItem>
+              <div className="flex flex-wrap gap-2 mb-4">
+                <Badge variant="accent">{project.status}</Badge>
+                <Badge variant="outline" className="capitalize">
+                  {project.category.replace('-', ' ')}
+                </Badge>
+              </div>
+            </RevealItem>
 
-          <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground mb-4">
-            {project.title}
-          </h1>
-          <p className="text-lg text-muted max-w-3xl leading-relaxed mb-6">
-            {project.shortDescription}
-          </p>
+            <RevealItem>
+              <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground mb-4">
+                {project.title}
+              </h1>
+            </RevealItem>
+            <RevealItem>
+              <p className="text-lg text-muted max-w-3xl leading-relaxed mb-6">
+                {project.shortDescription}
+              </p>
+            </RevealItem>
 
-          {(project.github || project.liveUrl || project.proofLinks?.length) && (
-            <div className="flex flex-wrap gap-3">
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={buttonClassName({ className: 'group' })}
-                >
-                  <Code size={18} className="mr-2" aria-hidden="true" />
-                  View on GitHub
-                  <ExternalLink
-                    size={14}
-                    className="ml-2 transition-transform group-hover:translate-x-0.5"
-                    aria-hidden="true"
-                  />
-                </a>
-              )}
-              {project.proofLinks?.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={buttonClassName({ variant: 'outline', className: 'group' })}
-                >
-                  <Code size={18} className="mr-2" aria-hidden="true" />
-                  {link.label}
-                  <ExternalLink
-                    size={14}
-                    className="ml-2 transition-transform group-hover:translate-x-0.5"
-                    aria-hidden="true"
-                  />
-                </a>
-              ))}
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={buttonClassName({ variant: 'outline', className: 'group' })}
-                >
-                  <ExternalLink size={18} className="mr-2" aria-hidden="true" />
-                  Live Demo
-                </a>
-              )}
-            </div>
-          )}
+            {(project.github || project.liveUrl || project.proofLinks?.length) && (
+              <RevealItem>
+                <div className="flex flex-wrap gap-3">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={buttonClassName({ className: 'group' })}
+                    >
+                      <Code size={18} className="mr-2" aria-hidden="true" />
+                      View on GitHub
+                      <ExternalLink
+                        size={14}
+                        className="ml-2 transition-transform group-hover:translate-x-0.5"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  )}
+                  {project.proofLinks?.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={buttonClassName({ variant: 'outline', className: 'group' })}
+                    >
+                      <Code size={18} className="mr-2" aria-hidden="true" />
+                      {link.label}
+                      <ExternalLink
+                        size={14}
+                        className="ml-2 transition-transform group-hover:translate-x-0.5"
+                        aria-hidden="true"
+                      />
+                    </a>
+                  ))}
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={buttonClassName({ variant: 'outline', className: 'group' })}
+                    >
+                      <ExternalLink size={18} className="mr-2" aria-hidden="true" />
+                      Live Demo
+                    </a>
+                  )}
+                </div>
+              </RevealItem>
+            )}
+          </RevealGroup>
         </Container>
       </section>
 
       <Section muted>
         <Container>
-          <div className="relative aspect-[16/9] max-h-[28rem] rounded-xl overflow-hidden border border-border bg-surface-muted">
+          <RevealOnView className="relative aspect-[16/9] max-h-[28rem] rounded-xl overflow-hidden border border-border bg-surface-muted">
             {project.image ? (
               <Image
                 src={project.image}
@@ -138,18 +151,20 @@ export default async function ProjectDetail({ params }: Props) {
                 </div>
               </div>
             )}
-          </div>
+          </RevealOnView>
           {project.mediaNote && project.image ? (
-            <p className="mt-3 text-sm text-muted">{project.mediaNote}</p>
+            <RevealOnView>
+              <p className="mt-3 text-sm text-muted">{project.mediaNote}</p>
+            </RevealOnView>
           ) : null}
           {project.confidentialityNote ? (
-            <div className="mt-4 rounded-lg border border-border bg-surface p-4 text-sm text-muted">
+            <RevealOnView className="mt-4 rounded-lg border border-border bg-surface p-4 text-sm text-muted">
               <div className="mb-1 flex items-center gap-2 font-medium text-foreground">
                 <LockKeyhole size={16} aria-hidden="true" />
                 Confidentiality note
               </div>
               <p>{project.confidentialityNote}</p>
-            </div>
+            </RevealOnView>
           ) : null}
         </Container>
       </Section>
@@ -158,24 +173,24 @@ export default async function ProjectDetail({ params }: Props) {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-10 lg:gap-16">
             <div className="space-y-10 min-w-0">
-              <div>
+              <RevealOnView>
                 <h2 className="text-2xl font-semibold text-foreground mb-3">The problem</h2>
                 <p className="text-muted leading-relaxed">{project.problem}</p>
-              </div>
+              </RevealOnView>
 
-              <div>
+              <RevealOnView>
                 <h2 className="text-2xl font-semibold text-foreground mb-3">What I built</h2>
                 <p className="text-muted leading-relaxed">{project.whatBuilt}</p>
-              </div>
+              </RevealOnView>
 
-              <div>
+              <RevealOnView>
                 <h2 className="text-2xl font-semibold text-foreground mb-3">
                   Technical implementation
                 </h2>
                 <p className="text-muted leading-relaxed">{project.technicalSummary}</p>
-              </div>
+              </RevealOnView>
 
-              <div>
+              <RevealOnView>
                 <h2 className="text-2xl font-semibold text-foreground mb-3">Key features</h2>
                 <ul className="space-y-2">
                   {project.keyFeatures.map((feature) => (
@@ -187,9 +202,9 @@ export default async function ProjectDetail({ params }: Props) {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </RevealOnView>
 
-              <div>
+              <RevealOnView>
                 <h2 className="text-2xl font-semibold text-foreground mb-3">Technical decisions</h2>
                 <ul className="space-y-2">
                   {project.technicalDecisions.map((decision) => (
@@ -201,9 +216,9 @@ export default async function ProjectDetail({ params }: Props) {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </RevealOnView>
 
-              <div>
+              <RevealOnView>
                 <h2 className="text-2xl font-semibold text-foreground mb-3">Challenges</h2>
                 <ul className="space-y-2">
                   {project.technicalChallenges.map((challenge) => (
@@ -215,10 +230,10 @@ export default async function ProjectDetail({ params }: Props) {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </RevealOnView>
             </div>
 
-            <aside className="space-y-5 lg:sticky lg:top-24 lg:self-start">
+            <RevealOnView className="space-y-5 lg:sticky lg:top-24 lg:self-start">
               <Card className="p-5">
                 <h3 className="text-sm font-medium text-foreground mb-3">Technologies</h3>
                 <div className="flex flex-wrap gap-1.5">
@@ -243,7 +258,7 @@ export default async function ProjectDetail({ params }: Props) {
                   ))}
                 </div>
               </Card>
-            </aside>
+            </RevealOnView>
           </div>
         </Container>
       </Section>
@@ -251,24 +266,27 @@ export default async function ProjectDetail({ params }: Props) {
       {related.length > 0 && (
         <Section divider muted>
           <Container>
-            <h2 className="text-2xl font-semibold text-foreground mb-6">Other projects</h2>
+            <RevealOnView>
+              <h2 className="text-2xl font-semibold text-foreground mb-6">Other projects</h2>
+            </RevealOnView>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {related.map((relatedProject) => (
-                <Link
-                  key={relatedProject.id}
-                  href={`/projects/${relatedProject.slug}`}
-                  className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-                >
-                  <Card hover className="p-5 h-full">
-                    <Badge variant="outline" className="text-xs mb-2">
-                      {relatedProject.status}
-                    </Badge>
-                    <h3 className="font-semibold text-foreground mb-2">{relatedProject.title}</h3>
-                    <p className="text-sm text-muted line-clamp-2">
-                      {relatedProject.shortDescription}
-                    </p>
-                  </Card>
-                </Link>
+              {related.map((relatedProject, index) => (
+                <RevealOnView key={relatedProject.id} delay={(index % 2) * 0.05}>
+                  <Link
+                    href={`/projects/${relatedProject.slug}`}
+                    className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                  >
+                    <Card hover className="p-5 h-full">
+                      <Badge variant="outline" className="text-xs mb-2">
+                        {relatedProject.status}
+                      </Badge>
+                      <h3 className="font-semibold text-foreground mb-2">{relatedProject.title}</h3>
+                      <p className="text-sm text-muted line-clamp-2">
+                        {relatedProject.shortDescription}
+                      </p>
+                    </Card>
+                  </Link>
+                </RevealOnView>
               ))}
             </div>
           </Container>
