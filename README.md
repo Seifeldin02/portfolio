@@ -113,7 +113,11 @@ Use [docs/maintenance.md](docs/maintenance.md) before pushing updates. Keep publ
 
 ## Deployment
 
-Production is deployed on Vercel from the `deploy/vercel-production` branch. Vercel auto-detects this as a Next.js app from `next.config.ts`, `package.json`, and `pnpm-lock.yaml`.
+Production is deployed on Vercel from the `deploy/vercel-production` branch:
+
+https://seifeldin-portfolio.vercel.app
+
+Vercel auto-detects this as a Next.js app from `next.config.ts`, `package.json`, and `pnpm-lock.yaml`.
 
 Use these commands before deploying:
 
