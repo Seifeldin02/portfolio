@@ -12,5 +12,5 @@ export const siteConfig = {
   resumePath: '/resume.pdf',
   ogImage: '/og-image.png',
   roles: ['Frontend Developer', 'Full-Stack Developer', 'Software Engineer'],
-  location: 'Yanbi, Al Madinah, Saudi Arabia',
+  location: 'Yanbu, Al Madinah, Saudi Arabia',
 } as const;
