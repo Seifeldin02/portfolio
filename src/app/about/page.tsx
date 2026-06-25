@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { ExternalLink } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { buttonClassName } from '@/components/ui/button';
@@ -32,10 +33,10 @@ export default function About() {
             <h2 className="text-2xl font-semibold text-foreground mb-4">Background</h2>
             <div className="space-y-4 text-muted leading-relaxed">
               <p>
-                I&apos;m a software engineer with a Bachelor&apos;s degree in Software Engineering
-                from Universiti Teknologi Malaysia. My work spans frontend development with React
-                and TypeScript, and full-stack engineering with Laravel, RESTful APIs, and
-                relational databases.
+                I&apos;m a software engineer with a Bachelor of Computer Science (Software
+                Engineering) with Honours from Universiti Teknologi Malaysia. My work spans frontend
+                development with React and TypeScript, and full-stack engineering with Laravel,
+                RESTful APIs, and relational databases.
               </p>
               <p>
                 At WeCodeForYou.io, I worked on React and TypeScript interfaces for a social
@@ -94,6 +95,17 @@ export default function About() {
                   </Badge>
                 ))}
               </div>
+              {edu.verificationUrl ? (
+                <a
+                  href={edu.verificationUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={buttonClassName({ variant: 'outline', size: 'sm', className: 'mt-5' })}
+                >
+                  Verify degree
+                  <ExternalLink size={14} className="ml-1.5" aria-hidden="true" />
+                </a>
+              ) : null}
             </Card>
           ))}
         </div>

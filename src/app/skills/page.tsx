@@ -3,7 +3,8 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Container } from '@/components/ui/container';
 import { Section, SectionHeader } from '@/components/ui/section';
-import { certifications } from '@/data/certifications';
+import { CredentialCard } from '@/components/sections/credential-card';
+import { credentials } from '@/data/certifications';
 import { skillsData } from '@/data/skills';
 import { siteConfig } from '@/lib/site-config';
 
@@ -118,17 +119,17 @@ export default function Skills() {
         </div>
       </Section>
 
-      {certifications.length > 0 && (
+      {credentials.length > 0 && (
         <Section divider>
-          <SectionHeader eyebrow="Credentials" title="Certifications & recognition" />
+          <SectionHeader
+            eyebrow="Credentials"
+            title="Verified credentials"
+            description="Certification and degree verification links that support the skills listed above."
+          />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {certifications.map((cert) => (
-              <Card key={cert.id} className="p-5">
-                <h3 className="font-semibold text-foreground mb-1">{cert.title}</h3>
-                <p className="text-sm text-muted mb-2">{cert.issuer}</p>
-                <p className="text-sm text-muted leading-relaxed">{cert.description}</p>
-              </Card>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {credentials.map((credential) => (
+              <CredentialCard key={credential.id} credential={credential} compact />
             ))}
           </div>
         </Section>

@@ -104,6 +104,7 @@ export interface Education {
   startDate: string;
   endDate: string;
   location: string;
+  verificationUrl?: string;
   achievements: {
     title: string;
     description: string;
@@ -114,11 +115,12 @@ export const education: Education[] = [
   {
     id: 'utm',
     institution: 'Universiti Teknologi Malaysia',
-    degree: 'Bachelor of Software Engineering',
+    degree: 'Bachelor of Computer Science (Software Engineering) with Honours',
     field: 'Software Engineering',
     startDate: 'Oct 2020',
     endDate: 'Jul 2025',
     location: 'Johor Bahru, Malaysia',
+    verificationUrl: 'https://bsea.utm.my/verQr?bsea=3957028063244',
     achievements: [
       {
         title: 'CGPA: 3.6/4.0',

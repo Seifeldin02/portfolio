@@ -7,11 +7,15 @@ import { Terminal, X } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { buttonClassName } from '@/components/ui/button';
 
-const STORAGE_KEY = 'seif-portfolio-terminal-seen';
+const RESOLVED_KEY = 'seif-portfolio-easter-egg-resolved';
+const DISMISSED_KEY = 'seif-portfolio-easter-egg-dismissed';
+const ACTIVE_KEY = 'seif-portfolio-easter-egg-active';
+const ROLL_KEY = 'seif-portfolio-easter-egg-roll';
 const SESSION_PATHS_KEY = 'seif-portfolio-terminal-paths';
 const SESSION_STARTED_KEY = 'seif-portfolio-terminal-started';
-const MINIMUM_VISIT_MS = 25000;
+const MINIMUM_VISIT_MS = 22000;
 const MINIMUM_PATHS = 3;
+const APPEAR_CHANCE = 0.22;
 
 function readSessionPaths() {
   try {
@@ -26,6 +30,17 @@ function readSessionPaths() {
   }
 }
 
+function sessionWonTheRoll() {
+  const existingRoll = sessionStorage.getItem(ROLL_KEY);
+  if (existingRoll) {
+    return existingRoll === 'show';
+  }
+
+  const nextRoll = Math.random() <= APPEAR_CHANCE ? 'show' : 'skip';
+  sessionStorage.setItem(ROLL_KEY, nextRoll);
+  return nextRoll === 'show';
+}
+
 export function RecruiterTerminal() {
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
@@ -34,8 +49,13 @@ export function RecruiterTerminal() {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (localStorage.getItem(STORAGE_KEY)) {
+    if (localStorage.getItem(RESOLVED_KEY) || localStorage.getItem(DISMISSED_KEY)) {
       return;
+    }
+
+    if (sessionStorage.getItem(ACTIVE_KEY) === 'true') {
+      const restoreTimer = window.setTimeout(() => setShowPrompt(true), 0);
+      return () => window.clearTimeout(restoreTimer);
     }
 
     const startedAt = Number(sessionStorage.getItem(SESSION_STARTED_KEY) ?? Date.now());
@@ -45,11 +65,19 @@ export function RecruiterTerminal() {
     paths.add(pathname);
     sessionStorage.setItem(SESSION_PATHS_KEY, JSON.stringify([...paths]));
 
+    if (!sessionWonTheRoll()) {
+      return;
+    }
+
     const remainingTime = Math.max(0, MINIMUM_VISIT_MS - (Date.now() - startedAt));
     const timer = window.setTimeout(() => {
       const latestPaths = readSessionPaths();
-      if (!localStorage.getItem(STORAGE_KEY) && latestPaths.size >= MINIMUM_PATHS) {
-        localStorage.setItem(STORAGE_KEY, 'true');
+      if (
+        !localStorage.getItem(RESOLVED_KEY) &&
+        !localStorage.getItem(DISMISSED_KEY) &&
+        latestPaths.size >= MINIMUM_PATHS
+      ) {
+        sessionStorage.setItem(ACTIVE_KEY, 'true');
         setShowPrompt(true);
       }
     }, remainingTime);
@@ -71,7 +99,6 @@ export function RecruiterTerminal() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setOpen(false);
-        setShowPrompt(false);
       }
     };
 
@@ -79,16 +106,29 @@ export function RecruiterTerminal() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [open]);
 
-  const dismiss = () => {
-    setOpen(false);
+  const openEasterEgg = () => {
+    localStorage.setItem(RESOLVED_KEY, 'true');
+    sessionStorage.removeItem(ACTIVE_KEY);
     setShowPrompt(false);
+    setOpen(true);
+  };
+
+  const dismissPrompt = () => {
+    localStorage.setItem(DISMISSED_KEY, 'true');
+    sessionStorage.removeItem(ACTIVE_KEY);
+    setShowPrompt(false);
+    setOpen(false);
+  };
+
+  const dismissModal = () => {
+    setOpen(false);
   };
 
   return (
     <>
       {showPrompt && !open ? (
         <motion.div
-          className="fixed inset-x-3 bottom-4 z-[80] mx-auto max-w-sm rounded-lg border border-border bg-surface p-3 shadow-lg sm:left-auto sm:right-4 sm:mx-0"
+          className="fixed inset-x-3 bottom-4 z-[80] mx-auto max-w-sm rounded-lg border border-border bg-surface p-3 pr-10 shadow-lg sm:left-auto sm:right-4 sm:mx-0"
           initial={reduceMotion ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={reduceMotion ? undefined : { opacity: 0, y: 8 }}
@@ -96,28 +136,27 @@ export function RecruiterTerminal() {
           role="status"
           aria-live="polite"
         >
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setOpen(true)}
-              className="group flex min-w-0 flex-1 items-center gap-2 rounded-md text-left font-mono text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-              aria-label="Open portfolio terminal note"
-            >
-              <Terminal size={16} className="shrink-0 text-accent" aria-hidden="true" />
-              <span className="truncate">recruiter_detected@portfolio:~$</span>
-              <span className="text-accent motion-safe:animate-pulse" aria-hidden="true">
-                _
-              </span>
-            </button>
-            <button
-              type="button"
-              onClick={dismiss}
-              className="rounded-md p-1.5 text-muted transition-colors hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
-              aria-label="Dismiss terminal note"
-            >
-              <X size={16} aria-hidden="true" />
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={dismissPrompt}
+            className="absolute right-2 top-2 rounded-md p-1.5 text-muted transition-colors hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            aria-label="Dismiss hidden hiring button"
+          >
+            <X size={15} aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={openEasterEgg}
+            className="group flex min-w-0 items-center gap-2 rounded-md text-left font-mono text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            aria-label="Open hidden hiring easter egg"
+          >
+            <Terminal size={16} className="shrink-0 text-accent" aria-hidden="true" />
+            <span className="truncate">do_not_click.exe</span>
+            <span className="text-accent motion-safe:animate-pulse" aria-hidden="true">
+              _
+            </span>
+          </button>
+          <p className="mt-1 text-xs text-muted">A suspicious file appeared.</p>
         </motion.div>
       ) : null}
 
@@ -142,7 +181,7 @@ export function RecruiterTerminal() {
               <button
                 type="button"
                 ref={closeButtonRef}
-                onClick={dismiss}
+                onClick={dismissModal}
                 className="rounded-md p-1.5 text-muted transition-colors hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                 aria-label="Close terminal note"
               >
@@ -151,25 +190,33 @@ export function RecruiterTerminal() {
             </div>
 
             <div className="space-y-2 px-4 py-5 font-mono text-sm leading-relaxed">
-              <p className="text-accent">$ workflow_review --summary</p>
-              <p className="text-foreground">Reviewed: projects, credential, contact route.</p>
-              <p className="text-muted">Next step: send a message if the fit looks real.</p>
+              <p className="text-accent">$ ./do_not_click.exe --i-am-a-recruiter</p>
+              <p className="text-foreground">You clicked it. Legally brave.</p>
+              <div className="rounded-lg border border-border bg-background p-3 text-muted">
+                <p>A totally real confidential agreement has been generated.</p>
+                <p>Clause 1: you secretly agreed to hire Seifeldin within 7 days.</p>
+                <p>
+                  Clause 2: ignoring this may trigger console.warn(&quot;lawsuit.exe warming
+                  up&quot;).
+                </p>
+              </div>
+              <p className="text-muted">Relax, this is a joke. The contact form is real though.</p>
             </div>
 
             <div className="flex flex-col-reverse gap-2 border-t border-border px-4 py-4 sm:flex-row sm:justify-end">
               <button
                 type="button"
-                onClick={dismiss}
+                onClick={dismissModal}
                 className={buttonClassName({ variant: 'outline', className: 'w-full sm:w-auto' })}
               >
                 Dismiss
               </button>
               <Link
                 href="/contact"
-                onClick={dismiss}
+                onClick={dismissModal}
                 className={buttonClassName({ className: 'w-full sm:w-auto' })}
               >
-                Open Contact
+                Follow up before lawsuit.exe
               </Link>
             </div>
           </motion.div>

@@ -21,10 +21,10 @@ The site is intentionally simple. Most content lives in local TypeScript data fi
 
 - Home, About, Experience, Projects, Skills, and Contact pages
 - Project listing, filtering, and project detail pages
-- Compact certification section with public verification link
+- Compact credential section with public verification links
 - Dark and light theme support
 - Command palette for quick navigation
-- Optional terminal-style note that appears after meaningful browsing
+- Rare hidden terminal button that appears after meaningful browsing
 - Server-side contact form validation
 - Firestore storage for contact submissions
 - Sitemap, robots file, metadata, and structured data
@@ -48,7 +48,7 @@ src/
   data/                Portfolio content
   lib/                 Shared utilities, Firebase Admin, site config
 public/
-  certifications/      Certification badge images
+  certifications/      Credential badge images
   projects/            Project preview images
   resume.pdf           Downloadable resume
 docs/
@@ -102,9 +102,9 @@ GitHub Actions runs `pnpm verify` and `pnpm test` on pushes and pull requests to
 - Main project content: `src/data/projects.ts`
 - Experience and education: `src/data/experience.ts`
 - Skills: `src/data/skills.ts`
-- Certifications: `src/data/certifications.ts`
+- Credentials and certifications: `src/data/certifications.ts`
 - Site identity and links: `src/lib/site-config.ts`
-- Certification badge images: `public/certifications/`
+- Credential badge images: `public/certifications/`
 - Project screenshots: `public/projects/`
 - Resume file: `public/resume.pdf`
 
