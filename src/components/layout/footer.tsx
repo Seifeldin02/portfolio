@@ -47,7 +47,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted hover:text-foreground transition-colors"
+                    className="inline-flex min-h-10 min-w-10 items-center rounded-md text-sm text-muted transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                   >
                     {link.label}
                   </Link>
@@ -68,7 +68,7 @@ export function Footer() {
                     target={link.href.startsWith('mailto') ? undefined : '_blank'}
                     rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
                     className={cn(
-                      'p-2.5 rounded-lg text-muted hover:text-foreground hover:bg-surface transition-colors'
+                      'inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-muted transition-colors hover:bg-surface hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2'
                     )}
                     aria-label={link.label}
                   >
@@ -80,9 +80,9 @@ export function Footer() {
             <a
               href={siteConfig.resumePath}
               download
-              className="inline-block mt-4 text-sm text-accent hover:text-accent-hover transition-colors"
+              className="mt-4 inline-flex min-h-10 items-center rounded-md text-sm text-accent transition-colors hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             >
-              Download resume →
+              Download resume -&gt;
             </a>
           </div>
         </div>

@@ -26,7 +26,7 @@ export default function About() {
             </RevealItem>
             <RevealItem>
               <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground mb-6">
-                Practical web engineering, with a frontend focus
+                Practical web engineering, with frontend and full-stack experience.
               </h1>
             </RevealItem>
             <RevealItem>

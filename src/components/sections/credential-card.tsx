@@ -72,7 +72,7 @@ export function CredentialCard({ credential, compact = false }: CredentialCardPr
             href={credential.credentialUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group mt-5 inline-flex items-center rounded-md text-sm font-medium text-accent transition-colors hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            className="group mt-5 inline-flex min-h-10 items-center rounded-md text-sm font-medium text-accent transition-colors hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
           >
             {credential.actionLabel}
             <ExternalLink

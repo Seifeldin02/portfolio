@@ -45,7 +45,7 @@ export function Navbar() {
         <div className="flex justify-between items-center h-16">
           <Link
             href="/"
-            className="flex items-center gap-2.5 font-semibold text-foreground min-w-0 rounded-lg transition-opacity hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            className="inline-flex min-h-11 min-w-11 items-center gap-2.5 rounded-lg font-semibold text-foreground transition-opacity hover:opacity-85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
           >
             <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shrink-0">
               <span className="text-white text-sm font-bold">SM</span>
@@ -79,7 +79,7 @@ export function Navbar() {
             <CommandPaletteTrigger />
             <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 rounded-lg text-muted hover:text-foreground hover:bg-surface-muted transition-all duration-200 hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
+              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-muted transition-all duration-200 hover:-translate-y-px hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDark ? <Sun size={20} /> : <Moon size={20} />}
@@ -87,7 +87,7 @@ export function Navbar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 rounded-lg text-muted hover:text-foreground hover:bg-surface-muted transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-muted transition-all duration-200 hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 md:hidden"
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isOpen}
             >
@@ -97,7 +97,7 @@ export function Navbar() {
         </div>
 
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-1 border-t border-border pt-3">
+          <div className="space-y-1 border-t border-border pb-4 pt-3 md:hidden">
             {navLinks.map((link) => {
               const isActive =
                 link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
@@ -106,7 +106,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    'block px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
+                    'block rounded-lg px-3 py-3 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
                     isActive
                       ? 'text-accent bg-accent-subtle'
                       : 'text-muted hover:text-foreground hover:bg-surface-muted'

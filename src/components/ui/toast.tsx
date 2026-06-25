@@ -45,7 +45,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     <ToastContext.Provider value={{ toast }}>
       {children}
       <div
-        className="fixed bottom-4 right-4 z-[100] flex flex-col gap-2 max-w-sm"
+        className="fixed inset-x-3 bottom-[calc(env(safe-area-inset-bottom)+1rem)] z-[100] flex max-w-sm flex-col gap-2 sm:left-auto sm:right-4"
         aria-live="polite"
         aria-atomic="true"
       >
@@ -68,7 +68,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               <p className="text-sm flex-1">{t.message}</p>
               <button
                 onClick={() => dismiss(t.id)}
-                className="shrink-0 opacity-60 hover:opacity-100"
+                className="inline-flex min-h-9 min-w-9 shrink-0 items-center justify-center rounded-md opacity-60 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                 aria-label="Dismiss notification"
               >
                 <X size={16} />

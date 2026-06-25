@@ -48,7 +48,7 @@ export default async function ProjectDetail({ params }: Props) {
             <RevealItem>
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-1.5 rounded-md text-sm text-muted hover:text-accent mb-6 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                className="mb-6 inline-flex min-h-10 items-center gap-1.5 rounded-md text-sm text-muted transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
               >
                 <ArrowLeft size={16} aria-hidden="true" />
                 Back to projects
@@ -131,7 +131,7 @@ export default async function ProjectDetail({ params }: Props) {
 
       <Section muted>
         <Container>
-          <RevealOnView className="relative aspect-[16/9] max-h-[28rem] rounded-xl overflow-hidden border border-border bg-surface-muted">
+          <RevealOnView className="relative h-52 max-h-[28rem] overflow-hidden rounded-xl border border-border bg-surface-muted sm:aspect-[16/9] sm:h-auto sm:min-h-[13rem]">
             {project.image ? (
               <Image
                 src={project.image}

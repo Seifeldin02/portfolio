@@ -128,13 +128,13 @@ export function CommandPaletteProvider({ children }: { children: React.ReactNode
     <CommandPaletteContext.Provider value={{ open: handleOpen }}>
       {children}
       {open && (
-        <div className="fixed inset-0 z-[90] flex items-start justify-center pt-[15vh] px-4">
+        <div className="fixed inset-0 z-[90] flex items-start justify-center px-3 pt-20 sm:px-4 sm:pt-[15vh]">
           <button
             className="absolute inset-0 bg-black/50 backdrop-blur-sm"
             onClick={() => setOpen(false)}
             aria-label="Close search"
           />
-          <div className="relative w-full max-w-xl bg-surface rounded-xl shadow-2xl border border-border overflow-hidden">
+          <div className="relative max-h-[calc(100vh-6rem)] w-full max-w-xl overflow-hidden rounded-xl border border-border bg-surface shadow-2xl">
             <div className="flex items-center gap-3 px-4 border-b border-border">
               <Search size={20} className="text-muted shrink-0" />
               <input
@@ -145,14 +145,14 @@ export function CommandPaletteProvider({ children }: { children: React.ReactNode
                   setSelectedIndex(0);
                 }}
                 placeholder="Search pages, projects, skills..."
-                className="flex-1 py-4 bg-transparent text-foreground placeholder:text-muted focus:outline-none"
+                className="min-h-12 flex-1 bg-transparent py-3 text-foreground placeholder:text-muted focus:outline-none"
                 autoFocus
               />
               <kbd className="hidden sm:inline text-xs text-muted bg-surface-muted px-2 py-1 rounded">
                 ESC
               </kbd>
             </div>
-            <ul className="max-h-80 overflow-y-auto py-2" role="listbox">
+            <ul className="max-h-[min(24rem,55vh)] overflow-y-auto py-2" role="listbox">
               {filtered.length === 0 ? (
                 <li className="px-4 py-8 text-center text-muted text-sm">No results found</li>
               ) : (
@@ -166,7 +166,7 @@ export function CommandPaletteProvider({ children }: { children: React.ReactNode
                           setOpen(false);
                         }}
                         className={cn(
-                          'w-full flex items-center gap-3 px-4 py-2.5 text-left transition-colors',
+                          'flex w-full items-center gap-3 px-4 py-3 text-left transition-colors',
                           index === selectedIndex ? 'bg-accent-subtle' : 'hover:bg-surface-muted'
                         )}
                         role="option"
@@ -188,7 +188,7 @@ export function CommandPaletteProvider({ children }: { children: React.ReactNode
                 })
               )}
             </ul>
-            <div className="px-4 py-2 border-t border-border text-xs text-muted flex gap-4">
+            <div className="hidden gap-4 border-t border-border px-4 py-2 text-xs text-muted sm:flex">
               <span>Arrow keys Navigate</span>
               <span>Enter Select</span>
               <span>Esc Close</span>
@@ -205,12 +205,15 @@ export function CommandPaletteTrigger() {
   return (
     <button
       onClick={open}
-      className="hidden md:flex items-center gap-2 px-3 py-1.5 text-sm text-muted bg-surface-muted rounded-lg border border-border hover:border-accent/40 hover:text-foreground transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+      className="inline-flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-lg border border-border bg-surface-muted px-3 text-sm text-muted transition-all duration-200 hover:border-accent/40 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
       aria-label="Open search"
+      title="Open search"
     >
       <Search size={14} />
-      <span>Search</span>
-      <kbd className="text-xs bg-surface px-1.5 py-0.5 rounded border border-border">Ctrl K</kbd>
+      <span className="hidden md:inline">Search</span>
+      <kbd className="hidden rounded border border-border bg-surface px-1.5 py-0.5 text-xs md:inline">
+        Ctrl K
+      </kbd>
     </button>
   );
 }

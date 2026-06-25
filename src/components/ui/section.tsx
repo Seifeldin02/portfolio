@@ -18,7 +18,7 @@ export function Section({
   return (
     <section
       className={cn(
-        'py-16 sm:py-20',
+        'py-14 sm:py-20',
         muted && 'bg-surface-muted',
         divider && 'border-t border-border',
         className

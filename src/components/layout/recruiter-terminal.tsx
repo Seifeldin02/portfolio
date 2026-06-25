@@ -128,7 +128,7 @@ export function RecruiterTerminal() {
     <>
       {showPrompt && !open ? (
         <motion.div
-          className="fixed inset-x-3 bottom-4 z-[80] mx-auto max-w-sm rounded-lg border border-border bg-surface p-3 pr-10 shadow-lg sm:left-auto sm:right-4 sm:mx-0"
+          className="fixed inset-x-3 bottom-[calc(env(safe-area-inset-bottom)+1rem)] z-[80] mx-auto max-w-sm rounded-lg border border-border bg-surface p-3 pr-10 shadow-lg sm:left-auto sm:right-4 sm:mx-0"
           initial={reduceMotion ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           exit={reduceMotion ? undefined : { opacity: 0, y: 8 }}
@@ -161,7 +161,7 @@ export function RecruiterTerminal() {
       ) : null}
 
       {open ? (
-        <div className="fixed inset-0 z-[90] flex items-end justify-center bg-black/35 px-3 py-4 sm:items-center">
+        <div className="fixed inset-0 z-[90] flex items-end justify-center bg-black/35 px-3 pb-[calc(env(safe-area-inset-bottom)+1rem)] pt-4 sm:items-center sm:py-4">
           <motion.div
             role="dialog"
             aria-modal="true"

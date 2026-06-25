@@ -41,7 +41,7 @@ export function PortfolioPulse() {
 
   return (
     <div
-      className="fixed bottom-3 left-3 z-40 rounded-full border border-border bg-surface/95 px-3 py-1.5 text-xs text-muted shadow-sm backdrop-blur-sm"
+      className="fixed bottom-[calc(env(safe-area-inset-bottom)+0.75rem)] left-3 z-40 max-w-[calc(100vw-1.5rem)] truncate rounded-full border border-border bg-surface/95 px-3 py-1.5 text-xs text-muted shadow-sm backdrop-blur-sm"
       role="status"
       aria-live="polite"
       aria-label={

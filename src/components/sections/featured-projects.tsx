@@ -41,7 +41,7 @@ export function FeaturedProjects() {
                   image={project.image}
                   status={project.status}
                   mediaNote={project.mediaNote}
-                  className="h-48"
+                  className="h-52 sm:h-56 xl:h-48"
                 />
 
                 <div className="p-6 sm:p-7 min-w-0">

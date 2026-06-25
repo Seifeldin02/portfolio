@@ -148,7 +148,7 @@ export default function Contact() {
               Prefer email?{' '}
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="rounded-sm text-accent hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+                className="inline-flex min-h-9 items-center rounded-md text-accent hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
               >
                 {siteConfig.email}
               </a>

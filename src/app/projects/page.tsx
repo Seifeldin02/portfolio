@@ -68,7 +68,7 @@ export default function ProjectsPage() {
               placeholder="Search projects..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-lg border border-border bg-surface text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
+              className="min-h-11 w-full rounded-lg border border-border bg-surface py-2.5 pl-10 pr-4 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
               aria-label="Search projects"
             />
           </div>
@@ -78,7 +78,7 @@ export default function ProjectsPage() {
               type="button"
               onClick={() => setSelectedCategory(null)}
               aria-pressed={!selectedCategory}
-              className={`rounded-md border px-3 py-1.5 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
+              className={`min-h-10 rounded-md border px-3 py-2 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
                 selectedCategory
                   ? 'border-border bg-surface text-muted hover:border-accent/40 hover:text-foreground'
                   : 'border-accent/30 bg-accent-subtle text-accent'
@@ -94,7 +94,7 @@ export default function ProjectsPage() {
                   type="button"
                   onClick={() => setSelectedCategory(active ? null : cat)}
                   aria-pressed={active}
-                  className={`rounded-md border px-3 py-1.5 text-sm font-medium capitalize transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
+                  className={`min-h-10 rounded-md border px-3 py-2 text-sm font-medium capitalize transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 ${
                     active
                       ? 'border-accent/30 bg-accent-subtle text-accent'
                       : 'border-border bg-surface text-muted hover:border-accent/40 hover:text-foreground'
@@ -123,7 +123,7 @@ export default function ProjectsPage() {
                 >
                   <Card hover variant="elevated" className="overflow-hidden">
                     <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] min-w-0">
-                      <div className="relative h-48 md:h-auto md:min-h-[200px] bg-surface-muted">
+                      <div className="relative h-52 bg-surface-muted sm:h-56 md:h-auto md:min-h-[200px]">
                         {project.image ? (
                           <Image
                             src={project.image}
