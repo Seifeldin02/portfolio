@@ -15,28 +15,40 @@ export const metadata: Metadata = {
 };
 
 const tierLabels = {
-  expert: 'Primary strength',
-  advanced: 'Comfortable',
-  intermediate: 'Familiar',
+  primary: 'Core use',
+  regular: 'Regular use',
+  familiar: 'Familiar',
 } as const;
 
 export default function Skills() {
+  const uniqueSkillsByTier = (tier: keyof typeof tierLabels) => {
+    const seen = new Set<string>();
+
+    return skillsData.flatMap((cat) =>
+      cat.skills
+        .filter((skill) => skill.proficiency === tier)
+        .filter((skill) => {
+          const key = skill.name
+            .toLowerCase()
+            .replace(/\.js\b/g, '')
+            .replace(/[^a-z0-9]+/g, ' ')
+            .trim();
+
+          if (seen.has(key)) {
+            return false;
+          }
+
+          seen.add(key);
+          return true;
+        })
+        .map((skill) => ({ ...skill, category: cat.name }))
+    );
+  };
+
   const grouped = {
-    primary: skillsData.flatMap((cat) =>
-      cat.skills
-        .filter((s) => s.proficiency === 'expert')
-        .map((s) => ({ ...s, category: cat.name }))
-    ),
-    comfortable: skillsData.flatMap((cat) =>
-      cat.skills
-        .filter((s) => s.proficiency === 'advanced')
-        .map((s) => ({ ...s, category: cat.name }))
-    ),
-    familiar: skillsData.flatMap((cat) =>
-      cat.skills
-        .filter((s) => s.proficiency === 'intermediate')
-        .map((s) => ({ ...s, category: cat.name }))
-    ),
+    primary: uniqueSkillsByTier('primary'),
+    regular: uniqueSkillsByTier('regular'),
+    familiar: uniqueSkillsByTier('familiar'),
   };
 
   return (
@@ -67,19 +79,19 @@ export default function Skills() {
             [
               {
                 key: 'primary',
-                label: 'Primary stack',
+                label: 'Core strengths',
                 items: grouped.primary,
                 variant: 'accent' as const,
               },
               {
-                key: 'comfortable',
-                label: 'Comfortable with',
-                items: grouped.comfortable,
+                key: 'regular',
+                label: 'Used in project work',
+                items: grouped.regular,
                 variant: 'default' as const,
               },
               {
                 key: 'familiar',
-                label: 'Additional tools',
+                label: 'Familiar tools',
                 items: grouped.familiar,
                 variant: 'outline' as const,
               },

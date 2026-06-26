@@ -96,8 +96,8 @@ export default function Contact() {
             </RevealItem>
             <RevealItem>
               <p className="text-lg text-muted leading-relaxed">
-                Open to most software engineering roles, willing to learn. Reach out via email,
-                LinkedIn, or the form below.
+                Open to most software engineering roles where I can contribute and keep
+                learning. Reach out via email, LinkedIn, or the form below.
               </p>
             </RevealItem>
           </RevealGroup>
@@ -159,7 +159,7 @@ export default function Contact() {
             <Card className="p-6 sm:p-8">
               <h2 className="text-lg font-semibold text-foreground mb-1">Send a message</h2>
               <p className="text-sm text-muted mb-6">
-                Form submissions are validated server-side. You can also email directly if
+                Form submissions are validated server-side. You can also email me directly if
                 preferred.
               </p>
 

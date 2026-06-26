@@ -235,7 +235,7 @@ export const projects: Project[] = [
     ],
     image: '/projects/outfitters-preview.webp',
     confidentialityNote:
-      'The Outfitters work is mostly classified. The repository is not public, and the preview is a sanitized visual based on documented UI references.',
+      'The Outfitters work is confidential company work. The repository is not public, and the preview is a sanitized visual based on documented UI references.',
     mediaNote:
       'Preview is based on the documented Explore, Insights, and Post Details screens with private names and data removed.',
     featured: true,
@@ -275,7 +275,7 @@ export const projects: Project[] = [
           'Worked across agency, users, departments, tickets, content, menus, and portal flows',
       },
       {
-        metric: 'Classified Codebase',
+        metric: 'Private Codebase',
         description: 'Repository access, screenshots, and production details are not public',
       },
     ],
@@ -297,7 +297,7 @@ export const projects: Project[] = [
       'Prioritized handover clarity and stable module behavior over risky broad refactors',
     ],
     confidentialityNote:
-      'MyPatil is classified. No screenshots or repository links are provided because the work belongs to the company and was not documented for public release.',
+      'The MyPatil codebase and project materials are confidential. No screenshots or repository links are provided because the work belongs to the company and was not documented for public release.',
     mediaNote: 'No screenshot is shown for this project due to confidentiality.',
     featured: false,
   },
