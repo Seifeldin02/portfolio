@@ -10,9 +10,9 @@ export function CertificationsSection() {
   return (
     <Section divider muted>
       <SectionHeader
-        eyebrow="Certification"
-        title="Verified credential"
-        description="A small credential section for confirmed certifications with public verification links."
+        eyebrow="Certifications"
+        title="Verified credentials"
+        description="Confirmed certifications with public verification links."
         className="mb-8"
       />
 

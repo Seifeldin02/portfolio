@@ -17,15 +17,15 @@ const heroMetrics = [
 
 export function HeroSection() {
   return (
-    <section className="border-b border-border pt-20 pb-10 sm:pt-24 sm:pb-12">
-      <Container size="wide">
+    <section className="border-b border-border pt-20 pb-12 sm:pt-24 sm:pb-14">
+      <Container>
         <motion.div
-          className="space-y-8"
+          className="max-w-5xl space-y-7"
           variants={staggerContainer}
           initial="initial"
           animate="animate"
         >
-          <motion.div variants={fadeUp} className="max-w-6xl space-y-5 min-w-0">
+          <motion.div variants={fadeUp} className="max-w-4xl space-y-5 min-w-0">
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <div className="flex flex-wrap items-center gap-2 min-w-0">
                 <Badge variant="accent">{siteConfig.subtitle}</Badge>
@@ -39,7 +39,7 @@ export function HeroSection() {
               </span>
             </div>
 
-            <h1 className="max-w-5xl text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-[4.6rem]">
+            <h1 className="max-w-4xl text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               {siteConfig.name}{' '}
               <span className="mt-2 block text-muted">
                 turns complex workflows into clear product features.
@@ -53,7 +53,7 @@ export function HeroSection() {
             </p>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="grid grid-cols-1 gap-3 sm:grid-cols-3 lg:gap-4">
+          <motion.div variants={fadeUp} className="grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-3">
             {heroMetrics.map((metric) => (
               <div key={metric.label} className="rounded-xl border border-border bg-surface p-4">
                 <p className="text-sm font-semibold text-foreground sm:text-base">{metric.value}</p>
@@ -64,7 +64,7 @@ export function HeroSection() {
 
           <motion.div
             variants={fadeUp}
-            className="flex flex-col gap-5 border-t border-border pt-6 lg:flex-row lg:items-center lg:justify-between"
+            className="flex max-w-4xl flex-col gap-5 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between"
           >
             <div className="flex flex-col gap-3 sm:flex-row">
               <Link
@@ -93,7 +93,7 @@ export function HeroSection() {
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
-              <span className="text-sm text-muted">Verify work and contact</span>
+              <span className="text-sm text-muted">Verify and contact</span>
               <div className="flex gap-1.5">
                 <a
                   href={siteConfig.github}

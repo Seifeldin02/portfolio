@@ -24,6 +24,17 @@ export const certifications: Certification[] = [
     imageAlt: 'AWS Academy Cloud Foundations trained badge',
     skills: ['AWS Architecture', 'AWS Cloud', 'AWS Core Services', 'AWS Pricing', 'AWS Support'],
   },
+  {
+    id: 'elements-of-ai-for-business',
+    type: 'certification',
+    title: 'Elements of AI for Business',
+    issuer: 'MinnaLearn and University of Helsinki',
+    description: 'Completed the 4-week Elements of AI for Business program.',
+    credentialUrl:
+      'https://courses.minnalearn.com/certificate/en/elements-of-ai-for-business/d2f0ad10-6105-4708-b28e-ced4ca8c3dae',
+    actionLabel: 'Verify certificate',
+    skills: ['AI Literacy', 'AI for Business', 'Business Use Cases'],
+  },
 ];
 
 export const educationCredentials: Certification[] = [

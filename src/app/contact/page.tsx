@@ -96,8 +96,8 @@ export default function Contact() {
             </RevealItem>
             <RevealItem>
               <p className="text-lg text-muted leading-relaxed">
-                Open to most software engineering roles where I can contribute and keep
-                learning. Reach out via email, LinkedIn, or the form below.
+                Open to most software engineering roles where I can contribute and keep learning.
+                Reach out via email, LinkedIn, or the form below.
               </p>
             </RevealItem>
           </RevealGroup>
