@@ -1,9 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight, Layers3 } from 'lucide-react';
-import { skillsData } from '@/data/skills';
 import { Badge } from '@/components/ui/badge';
 import { buttonClassName } from '@/components/ui/button';
-import { SkillCategoryGrid } from '@/components/sections/skill-category-grid';
 import { Section, SectionHeader } from '@/components/ui/section';
 
 const stackGroups = [
@@ -35,7 +33,7 @@ export function TechStack() {
         description="A short view of the technologies I use across interface work, backend integration, database tasks, and delivery."
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {stackGroups.map((group) => (
           <article
             key={group.title}
@@ -56,8 +54,6 @@ export function TechStack() {
           </article>
         ))}
       </div>
-
-      <SkillCategoryGrid categories={skillsData} />
 
       <div className="text-center mt-10">
         <Link
