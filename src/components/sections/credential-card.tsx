@@ -14,15 +14,15 @@ export function CredentialCard({ credential, compact = false }: CredentialCardPr
   const Icon = credential.type === 'education' ? GraduationCap : Award;
 
   return (
-    <Card className="overflow-hidden">
-      <div className={cn('grid grid-cols-1', !compact && 'md:grid-cols-[220px_1fr]')}>
+    <Card className="h-full overflow-hidden">
+      <div className={cn('grid h-full grid-cols-1', !compact && 'md:grid-cols-[220px_1fr]')}>
         <a
           href={credential.credentialUrl}
           target="_blank"
           rel="noopener noreferrer"
           className={cn(
             'flex items-center justify-center border-border bg-background transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
-            compact ? 'border-b p-5' : 'min-h-48 border-b p-6 md:border-r md:border-b-0'
+            compact ? 'min-h-32 border-b p-5' : 'min-h-48 border-b p-6 md:border-r md:border-b-0'
           )}
           aria-label={`${credential.actionLabel}: ${credential.title}`}
         >
@@ -51,7 +51,7 @@ export function CredentialCard({ credential, compact = false }: CredentialCardPr
           )}
         </a>
 
-        <div className={compact ? 'p-5' : 'p-5 sm:p-6'}>
+        <div className={cn('flex flex-col', compact ? 'p-5' : 'p-5 sm:p-6')}>
           <p className="text-sm font-medium text-accent">{credential.issuer}</p>
           <h3 className={cn('mt-2 font-semibold text-foreground', compact ? 'text-lg' : 'text-xl')}>
             {credential.title}
@@ -72,7 +72,7 @@ export function CredentialCard({ credential, compact = false }: CredentialCardPr
             href={credential.credentialUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group mt-5 inline-flex min-h-10 items-center rounded-md text-sm font-medium text-accent transition-colors hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            className="group mt-auto inline-flex min-h-10 items-center rounded-md pt-5 text-sm font-medium text-accent transition-colors hover:text-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
           >
             {credential.actionLabel}
             <ExternalLink
