@@ -8,9 +8,11 @@ interface ThemeContextType {
 }
 
 const ThemeContext = createContext<ThemeContextType>({
-  isDark: false,
+  isDark: true,
   setIsDark: () => {},
 });
+
+const DEFAULT_DARK_MODE = true;
 
 function applyTheme(dark: boolean) {
   const html = document.documentElement;
@@ -23,12 +25,11 @@ function applyTheme(dark: boolean) {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(DEFAULT_DARK_MODE);
 
   useEffect(() => {
     const saved = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const shouldBeDark = saved ? saved === 'dark' : prefersDark;
+    const shouldBeDark = saved ? saved === 'dark' : DEFAULT_DARK_MODE;
     applyTheme(shouldBeDark);
     // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate theme from localStorage on mount
     setIsDark(shouldBeDark);

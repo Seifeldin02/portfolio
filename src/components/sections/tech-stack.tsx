@@ -3,6 +3,7 @@ import { ArrowRight, Layers3 } from 'lucide-react';
 import { skillsData } from '@/data/skills';
 import { Badge } from '@/components/ui/badge';
 import { buttonClassName } from '@/components/ui/button';
+import { SkillCategoryGrid } from '@/components/sections/skill-category-grid';
 import { Section, SectionHeader } from '@/components/ui/section';
 
 const stackGroups = [
@@ -26,10 +27,6 @@ const stackGroups = [
 ];
 
 export function TechStack() {
-  const categories = skillsData.filter((cat) =>
-    ['Frontend', 'Backend', 'Databases', 'Tools'].includes(cat.name)
-  );
-
   return (
     <Section divider>
       <SectionHeader
@@ -60,21 +57,7 @@ export function TechStack() {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {categories.map((category) => (
-          <div key={category.name} className="min-w-0">
-            <h3 className="text-base font-medium text-foreground mb-1">{category.name}</h3>
-            <p className="text-sm text-muted mb-3">{category.description}</p>
-            <div className="flex flex-wrap gap-1.5">
-              {category.skills.map((skill) => (
-                <Badge key={skill.name} variant="outline" className="text-xs bg-surface">
-                  {skill.name}
-                </Badge>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      <SkillCategoryGrid categories={skillsData} />
 
       <div className="text-center mt-10">
         <Link

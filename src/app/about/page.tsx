@@ -78,8 +78,8 @@ export default function About() {
       <Section divider>
         <SectionHeader
           eyebrow="Education"
-          title="Education & credentials"
-          description="Academic background and credentials relevant to software engineering roles."
+          title="Education"
+          description="Academic background relevant to software engineering roles."
         />
 
         <div className="space-y-4">
@@ -113,7 +113,7 @@ export default function About() {
                     className={buttonClassName({
                       variant: 'outline',
                       size: 'sm',
-                      className: 'mt-5',
+                      className: 'mt-5 min-h-10',
                     })}
                   >
                     Verify degree

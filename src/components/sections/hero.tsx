@@ -20,14 +20,14 @@ export function HeroSection() {
     <section className="border-b border-border pt-20 pb-12 sm:pt-24 sm:pb-14">
       <Container>
         <motion.div
-          className="max-w-5xl space-y-7"
+          className="mx-auto max-w-4xl space-y-7 text-center"
           variants={staggerContainer}
           initial="initial"
           animate="animate"
         >
-          <motion.div variants={fadeUp} className="max-w-4xl space-y-5 min-w-0">
-            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-              <div className="flex flex-wrap items-center gap-2 min-w-0">
+          <motion.div variants={fadeUp} className="mx-auto max-w-3xl space-y-5 min-w-0">
+            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+              <div className="flex min-w-0 flex-wrap items-center justify-center gap-2">
                 <Badge variant="accent">{siteConfig.subtitle}</Badge>
                 <Badge variant="outline" className="bg-surface">
                   Open to frontend and full-stack roles
@@ -39,21 +39,24 @@ export function HeroSection() {
               </span>
             </div>
 
-            <h1 className="max-w-4xl text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+            <h1 className="mx-auto max-w-3xl text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               {siteConfig.name}{' '}
               <span className="mt-2 block text-muted">
                 turns complex workflows into clear product features.
               </span>
             </h1>
 
-            <p className="max-w-3xl text-lg leading-relaxed text-muted">
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
               I work mostly in React and TypeScript, with Laravel and API work when the flow needs
               backend support. Most of my work sits around forms, validation, integrations, admin
               screens, and product flows that need to stay understandable after handoff.
             </p>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-3">
+          <motion.div
+            variants={fadeUp}
+            className="mx-auto grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3"
+          >
             {heroMetrics.map((metric) => (
               <div key={metric.label} className="rounded-xl border border-border bg-surface p-4">
                 <p className="text-sm font-semibold text-foreground sm:text-base">{metric.value}</p>
@@ -64,9 +67,9 @@ export function HeroSection() {
 
           <motion.div
             variants={fadeUp}
-            className="flex max-w-4xl flex-col gap-5 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between"
+            className="mx-auto flex max-w-3xl flex-col items-center gap-5 border-t border-border pt-6"
           >
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:justify-center">
               <Link
                 href="/projects"
                 className={buttonClassName({ size: 'lg', className: 'w-full sm:w-auto group' })}
@@ -92,7 +95,7 @@ export function HeroSection() {
               </a>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center justify-center gap-3">
               <span className="text-sm text-muted">Verify and contact</span>
               <div className="flex gap-1.5">
                 <a

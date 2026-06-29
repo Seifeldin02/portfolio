@@ -22,7 +22,7 @@ export function CredentialCard({ credential, compact = false }: CredentialCardPr
           rel="noopener noreferrer"
           className={cn(
             'flex items-center justify-center border-border bg-background transition-colors hover:bg-surface focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
-            compact ? 'min-h-32 border-b p-5' : 'min-h-48 border-b p-6 md:border-r md:border-b-0'
+            compact ? 'h-32 border-b p-5' : 'min-h-48 border-b p-6 md:border-r md:border-b-0'
           )}
           aria-label={`${credential.actionLabel}: ${credential.title}`}
         >

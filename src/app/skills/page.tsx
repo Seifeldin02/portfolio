@@ -5,6 +5,7 @@ import { Container } from '@/components/ui/container';
 import { RevealGroup, RevealItem, RevealOnView } from '@/components/layout/reveal';
 import { Section, SectionHeader } from '@/components/ui/section';
 import { CredentialCard } from '@/components/sections/credential-card';
+import { SkillCategoryGrid, skillTierLabels } from '@/components/sections/skill-category-grid';
 import { credentials } from '@/data/certifications';
 import { skillsData } from '@/data/skills';
 import { siteConfig } from '@/lib/site-config';
@@ -14,14 +15,8 @@ export const metadata: Metadata = {
   description: `Technical skills used by ${siteConfig.name}.`,
 };
 
-const tierLabels = {
-  primary: 'Core use',
-  regular: 'Regular use',
-  familiar: 'Familiar',
-} as const;
-
 export default function Skills() {
-  const uniqueSkillsByTier = (tier: keyof typeof tierLabels) => {
+  const uniqueSkillsByTier = (tier: keyof typeof skillTierLabels) => {
     const seen = new Set<string>();
 
     return skillsData.flatMap((cat) =>
@@ -98,7 +93,7 @@ export default function Skills() {
             ] as const
           ).map((tier) => (
             <RevealOnView key={tier.key}>
-              <Card className="p-6">
+              <Card className="h-full p-6">
                 <h2 className="text-sm font-medium uppercase tracking-wide text-muted mb-4">
                   {tier.label}
                 </h2>
@@ -121,29 +116,7 @@ export default function Skills() {
           />
         </RevealOnView>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {skillsData.map((category, index) => (
-            <RevealOnView key={category.name} delay={(index % 2) * 0.05}>
-              <Card className="p-6 min-w-0">
-                <h3 className="text-lg font-semibold text-foreground mb-1">{category.name}</h3>
-                <p className="text-sm text-muted mb-4">{category.description}</p>
-                <div className="space-y-3">
-                  {category.skills.map((skill) => (
-                    <div
-                      key={skill.name}
-                      className="flex items-center justify-between gap-4 text-sm min-w-0"
-                    >
-                      <span className="text-foreground font-medium truncate">{skill.name}</span>
-                      <span className="text-xs text-muted shrink-0">
-                        {tierLabels[skill.proficiency]}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-            </RevealOnView>
-          ))}
-        </div>
+        <SkillCategoryGrid categories={skillsData} />
       </Section>
 
       {credentials.length > 0 && (
@@ -154,9 +127,9 @@ export default function Skills() {
             description="Certification and degree verification links that support the skills listed above."
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             {credentials.map((credential, index) => (
-              <RevealOnView key={credential.id} delay={index * 0.05}>
+              <RevealOnView key={credential.id} delay={index * 0.05} className="h-full">
                 <CredentialCard credential={credential} compact />
               </RevealOnView>
             ))}
