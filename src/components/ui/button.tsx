@@ -17,13 +17,13 @@ export function buttonClassName({
   return cn(
     'font-medium rounded-lg transition-all duration-200 ease-out inline-flex items-center justify-center whitespace-nowrap',
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
-    'active:translate-y-0 motion-reduce:transition-none motion-reduce:hover:translate-y-0',
+    'active:translate-y-0 active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:translate-y-0',
     'disabled:opacity-50 disabled:pointer-events-none',
     {
       'px-3 py-2 text-sm': size === 'sm',
       'px-4 py-2.5 text-sm': size === 'md',
       'px-6 py-3 text-base': size === 'lg',
-      'bg-accent text-white shadow-sm hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-md':
+      'bg-accent text-accent-contrast shadow-[0_8px_24px_color-mix(in_srgb,var(--accent)_18%,transparent)] hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-[0_12px_32px_color-mix(in_srgb,var(--accent)_26%,transparent)]':
         variant === 'primary',
       'bg-surface-muted text-foreground hover:bg-border/60 hover:-translate-y-0.5':
         variant === 'secondary',

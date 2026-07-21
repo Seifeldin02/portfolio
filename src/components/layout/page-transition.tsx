@@ -16,10 +16,10 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
     <motion.main
       key={pathname}
       className="flex-1 transform-gpu"
-      initial={reduceMotion ? false : fadeUp.initial}
-      animate={reduceMotion ? { opacity: 1 } : fadeUp.animate}
-      transition={reduceMotion ? { duration: 0 } : routeTransition}
-      style={reduceMotion ? undefined : { willChange: 'opacity, transform' }}
+      initial={reduceMotion ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={reduceMotion ? { duration: 0 } : { ...routeTransition, duration: 0.28 }}
+      style={reduceMotion ? undefined : { willChange: 'opacity' }}
     >
       {children}
     </motion.main>

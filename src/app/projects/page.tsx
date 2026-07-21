@@ -1,8 +1,7 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { Search } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { Card } from '@/components/ui/card';
@@ -10,15 +9,19 @@ import { Badge } from '@/components/ui/badge';
 import { Container } from '@/components/ui/container';
 import { RevealGroup, RevealItem, RevealOnView } from '@/components/layout/reveal';
 import { Section } from '@/components/ui/section';
+import { FlagshipProject } from '@/components/sections/flagship-project';
+import { ProjectVisualPanel } from '@/components/ui/project-visual';
+
+const flagshipProject = projects.find((project) => project.flagship);
+const projectArchive = projects.filter((project) => !project.flagship);
+const projectCategories = Array.from(new Set(projectArchive.map((project) => project.category)));
 
 export default function ProjectsPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const categories = useMemo(() => Array.from(new Set(projects.map((p) => p.category))), []);
-
   const q = searchQuery.toLowerCase();
-  const filtered = projects.filter((project) => {
+  const filtered = projectArchive.filter((project) => {
     const matchesSearch =
       !q ||
       project.title.toLowerCase().includes(q) ||
@@ -31,7 +34,7 @@ export default function ProjectsPage() {
 
   return (
     <>
-      <section className="pt-28 pb-8 sm:pt-32">
+      <section className="page-intro pt-28 pb-12 sm:pt-32 sm:pb-16">
         <Container size="narrow">
           <RevealGroup>
             <RevealItem>
@@ -55,7 +58,35 @@ export default function ProjectsPage() {
         </Container>
       </section>
 
+      {flagshipProject ? (
+        <Section muted containerSize="wide" className="border-y border-border">
+          <RevealOnView>
+            <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-sm font-medium uppercase tracking-wide text-accent">
+                  Flagship project
+                </p>
+                <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+                  Start with the strongest work
+                </h2>
+              </div>
+              <p className="max-w-lg text-sm leading-relaxed text-muted">
+                Live full-stack project, public repository, source-grounded workflow, and hiring
+                intelligence.
+              </p>
+            </div>
+            <FlagshipProject project={flagshipProject} />
+          </RevealOnView>
+        </Section>
+      ) : null}
+
       <Section>
+        <RevealOnView className="mb-7">
+          <p className="text-sm font-medium uppercase tracking-wide text-accent">Project archive</p>
+          <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+            More engineering case studies
+          </h2>
+        </RevealOnView>
         <RevealOnView className="flex flex-col gap-4 mb-8">
           <div className="flex-1 relative min-w-0">
             <Search
@@ -65,7 +96,7 @@ export default function ProjectsPage() {
             />
             <input
               type="search"
-              placeholder="Search projects..."
+              placeholder="Search other projects..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="min-h-11 w-full rounded-lg border border-border bg-surface py-2.5 pl-10 pr-4 text-foreground placeholder:text-muted focus:outline-none focus:ring-2 focus:ring-accent"
@@ -86,7 +117,7 @@ export default function ProjectsPage() {
             >
               All
             </button>
-            {categories.map((cat) => {
+            {projectCategories.map((cat) => {
               const active = selectedCategory === cat;
               return (
                 <button
@@ -122,29 +153,15 @@ export default function ProjectsPage() {
                   className="block rounded-lg group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                 >
                   <Card hover variant="elevated" className="overflow-hidden">
-                    <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] min-w-0">
-                      <div className="relative h-52 bg-surface-muted sm:h-56 md:h-auto md:min-h-[200px]">
-                        {project.image ? (
-                          <Image
-                            src={project.image}
-                            alt={`${project.title} preview`}
-                            fill
-                            className="object-cover"
-                            sizes="280px"
-                          />
-                        ) : (
-                          <div className="flex items-center justify-center h-full p-6 text-center">
-                            <p className="text-sm text-muted">
-                              {project.mediaNote ?? 'Screenshot unavailable'}
-                            </p>
-                          </div>
-                        )}
-                        <div className="absolute top-3 left-3">
-                          <Badge variant="accent" className="text-xs">
-                            {project.status}
-                          </Badge>
-                        </div>
-                      </div>
+                    <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] min-w-0">
+                      <ProjectVisualPanel
+                        title={project.title}
+                        visual={project.visual}
+                        image={project.image}
+                        status={project.status}
+                        mediaNote={project.mediaNote}
+                        className="h-52 sm:h-56 md:h-auto md:min-h-[220px]"
+                      />
 
                       <div className="p-6 min-w-0">
                         <h2 className="text-xl font-semibold text-foreground mb-2 group-hover:text-accent transition-colors">

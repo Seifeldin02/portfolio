@@ -30,7 +30,8 @@ export function ExperienceHighlights() {
               <div className="w-2 h-2 rounded-full bg-accent" />
             </div>
 
-            <div className="rounded-xl border border-border bg-surface p-5 sm:p-6 min-w-0">
+            <div className="group relative min-w-0 overflow-hidden rounded-xl border border-border bg-surface p-5 shadow-[0_12px_34px_rgba(15,23,42,0.035)] transition-all duration-300 hover:border-accent/30 hover:shadow-[0_20px_50px_rgba(15,23,42,0.075)] sm:p-6 dark:shadow-none">
+              <div className="absolute inset-y-0 left-0 w-0.5 origin-top scale-y-0 bg-accent transition-transform duration-300 group-hover:scale-y-100 motion-reduce:transition-none" />
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-3">
                 <div className="min-w-0">
                   <h3 className="text-lg font-semibold text-foreground">{exp.position}</h3>

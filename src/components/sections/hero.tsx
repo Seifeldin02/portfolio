@@ -1,11 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { ArrowRight, Code, Download, Mail, MapPin, Share2 } from 'lucide-react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight, Code, Download, Mail, MapPin, Share2, Sparkles } from 'lucide-react';
 import { buttonClassName } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Container } from '@/components/ui/container';
+import { HeroEvidenceVisual } from '@/components/visuals/hero-evidence-visual';
 import { fadeUp, staggerContainer } from '@/lib/motion';
 import { siteConfig } from '@/lib/site-config';
 
@@ -16,60 +17,94 @@ const heroMetrics = [
 ];
 
 export function HeroSection() {
+  const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const visualY = useTransform(scrollYProgress, [0, 0.28], [0, reduceMotion ? 0 : 70]);
+
   return (
-    <section className="border-b border-border pt-20 pb-12 sm:pt-24 sm:pb-14">
-      <Container>
+    <section className="relative isolate overflow-hidden border-b border-border pb-12 pt-20 sm:pb-16 sm:pt-24 lg:min-h-[46rem] lg:pb-20">
+      <motion.div
+        className="pointer-events-none absolute inset-y-0 right-0 z-0 w-full opacity-55 [mask-image:linear-gradient(to_right,transparent_10%,black_52%)] sm:opacity-70 md:w-[70%] lg:w-[64%] dark:opacity-85"
+        style={{ y: visualY }}
+        aria-hidden="true"
+      >
+        <HeroEvidenceVisual />
+      </motion.div>
+
+      <Container size="wide" className="relative z-10">
         <motion.div
-          className="mx-auto max-w-4xl space-y-7 text-center"
+          className="max-w-4xl pt-8 sm:pt-12 lg:pt-16"
           variants={staggerContainer}
           initial="initial"
           animate="animate"
         >
-          <motion.div variants={fadeUp} className="mx-auto max-w-3xl space-y-5 min-w-0">
-            <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
-              <div className="flex min-w-0 flex-wrap items-center justify-center gap-2">
-                <Badge variant="accent">{siteConfig.subtitle}</Badge>
-                <Badge variant="outline" className="bg-surface">
-                  Open to frontend and full-stack roles
-                </Badge>
-              </div>
-              <span className="inline-flex min-w-0 items-center gap-1.5 text-sm text-muted">
-                <MapPin size={14} className="shrink-0" aria-hidden="true" />
-                <span className="truncate sm:whitespace-normal">{siteConfig.location}</span>
-              </span>
-            </div>
+          <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-2.5">
+            <Badge variant="accent" className="bg-background/80 backdrop-blur-sm">
+              {siteConfig.subtitle}
+            </Badge>
+            <Badge variant="outline" className="bg-background/80 backdrop-blur-sm">
+              Open to frontend and full-stack roles
+            </Badge>
+            <span className="inline-flex items-center gap-1.5 rounded-md bg-background/75 px-2 py-1 text-sm text-muted backdrop-blur-sm">
+              <MapPin size={14} className="shrink-0" aria-hidden="true" />
+              {siteConfig.location}
+            </span>
+          </motion.div>
 
-            <h1 className="mx-auto max-w-3xl text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
-              {siteConfig.name}{' '}
-              <span className="mt-2 block text-muted">
+          <motion.div variants={fadeUp} className="mt-7 min-w-0">
+            <h1 className="max-w-4xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.045em] text-foreground sm:text-6xl lg:text-7xl xl:text-[5.5rem]">
+              {siteConfig.name}
+              <span className="mt-3 block max-w-3xl text-[0.58em] leading-[1.05] tracking-[-0.035em] text-muted">
                 turns complex workflows into clear product features.
               </span>
             </h1>
 
-            <p className="mx-auto max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
+            <p className="mt-7 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
               I work mostly in React and TypeScript, with Laravel and API work when the flow needs
               backend support. Most of my work sits around forms, validation, integrations, admin
               screens, and product flows that need to stay understandable after handoff.
             </p>
           </motion.div>
 
-          <motion.div
+          <motion.div variants={fadeUp} className="mt-7 flex flex-wrap gap-3">
+            <Link
+              href="/projects/codeproof-hiring-intelligence"
+              className="group inline-flex min-h-11 items-center gap-2 rounded-lg border border-accent/30 bg-accent-subtle/85 px-3.5 py-2 text-sm font-medium text-accent backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-accent/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-reduce:hover:translate-y-0"
+            >
+              <Sparkles size={16} aria-hidden="true" />
+              Flagship project: CodeProof is live
+              <ArrowRight
+                size={15}
+                className="transition-transform group-hover:translate-x-0.5"
+                aria-hidden="true"
+              />
+            </Link>
+          </motion.div>
+
+          <motion.dl
             variants={fadeUp}
-            className="mx-auto grid max-w-3xl grid-cols-1 gap-3 sm:grid-cols-3"
+            className="mt-8 grid max-w-3xl grid-cols-1 border-y border-border/80 bg-background/65 backdrop-blur-sm sm:grid-cols-3"
           >
-            {heroMetrics.map((metric) => (
-              <div key={metric.label} className="rounded-xl border border-border bg-surface p-4">
-                <p className="text-sm font-semibold text-foreground sm:text-base">{metric.value}</p>
-                <p className="mt-1 text-xs uppercase tracking-wide text-muted">{metric.label}</p>
+            {heroMetrics.map((metric, index) => (
+              <div
+                key={metric.label}
+                className={`px-1 py-4 sm:px-4 ${index > 0 ? 'border-t border-border/80 sm:border-l sm:border-t-0' : ''}`}
+              >
+                <dd className="text-sm font-semibold text-foreground sm:text-base">
+                  {metric.value}
+                </dd>
+                <dt className="mt-1 text-[11px] uppercase tracking-[0.12em] text-muted">
+                  {metric.label}
+                </dt>
               </div>
             ))}
-          </motion.div>
+          </motion.dl>
 
           <motion.div
             variants={fadeUp}
-            className="mx-auto flex max-w-3xl flex-col items-center gap-5 border-t border-border pt-6"
+            className="mt-7 flex flex-col gap-5 sm:flex-row sm:flex-wrap sm:items-center"
           >
-            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center sm:justify-center">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/projects"
                 className={buttonClassName({ size: 'lg', className: 'w-full sm:w-auto group' })}
@@ -77,7 +112,7 @@ export function HeroSection() {
                 View Projects
                 <ArrowRight
                   size={18}
-                  className="ml-2 group-hover:translate-x-0.5 transition-transform"
+                  className="ml-2 transition-transform group-hover:translate-x-0.5"
                   aria-hidden="true"
                 />
               </Link>
@@ -87,7 +122,7 @@ export function HeroSection() {
                 className={buttonClassName({
                   size: 'lg',
                   variant: 'outline',
-                  className: 'w-full sm:w-auto bg-surface',
+                  className: 'w-full bg-background/80 backdrop-blur-sm sm:w-auto',
                 })}
               >
                 <Download size={18} className="mr-2" aria-hidden="true" />
@@ -95,35 +130,23 @@ export function HeroSection() {
               </a>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-3">
-              <span className="text-sm text-muted">Verify and contact</span>
-              <div className="flex gap-1.5">
+            <div className="flex items-center gap-1.5 sm:ml-auto">
+              {[
+                { href: siteConfig.github, label: 'GitHub profile', Icon: Code },
+                { href: siteConfig.linkedin, label: 'LinkedIn profile', Icon: Share2 },
+                { href: `mailto:${siteConfig.email}`, label: 'Send email', Icon: Mail },
+              ].map(({ href, label, Icon }) => (
                 <a
-                  href={siteConfig.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-muted transition-all duration-200 hover:-translate-y-0.5 hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
-                  aria-label="GitHub profile"
+                  key={label}
+                  href={href}
+                  target={href.startsWith('mailto:') ? undefined : '_blank'}
+                  rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                  className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg bg-background/70 text-muted backdrop-blur-sm transition-all duration-200 hover:-translate-y-0.5 hover:bg-surface hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent motion-reduce:hover:translate-y-0"
+                  aria-label={label}
                 >
-                  <Code size={20} />
+                  <Icon size={19} aria-hidden="true" />
                 </a>
-                <a
-                  href={siteConfig.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-muted transition-all duration-200 hover:-translate-y-0.5 hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
-                  aria-label="LinkedIn profile"
-                >
-                  <Share2 size={20} />
-                </a>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-muted transition-all duration-200 hover:-translate-y-0.5 hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
-                  aria-label="Send email"
-                >
-                  <Mail size={20} />
-                </a>
-              </div>
+              ))}
             </div>
           </motion.div>
         </motion.div>

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function Experience() {
   return (
     <>
-      <section className="pt-28 pb-8 sm:pt-32">
+      <section className="page-intro pt-28 pb-12 sm:pt-32 sm:pb-16">
         <Container size="narrow">
           <RevealGroup>
             <RevealItem>

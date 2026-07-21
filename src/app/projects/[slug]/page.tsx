@@ -5,6 +5,7 @@ import { buttonClassName } from '@/components/ui/button';
 import { Container } from '@/components/ui/container';
 import { RevealGroup, RevealItem, RevealOnView } from '@/components/layout/reveal';
 import { Section } from '@/components/ui/section';
+import { ProjectVisualPanel } from '@/components/ui/project-visual';
 import { ExternalLink, Code, ArrowLeft, LockKeyhole } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -42,7 +43,7 @@ export default async function ProjectDetail({ params }: Props) {
 
   return (
     <>
-      <section className="pt-28 pb-8 sm:pt-32">
+      <section className="page-intro pt-28 pb-12 sm:pt-32 sm:pb-16">
         <Container>
           <RevealGroup>
             <RevealItem>
@@ -132,7 +133,15 @@ export default async function ProjectDetail({ params }: Props) {
       <Section muted>
         <Container>
           <RevealOnView className="relative h-52 max-h-[28rem] overflow-hidden rounded-xl border border-border bg-surface-muted sm:aspect-[16/9] sm:h-auto sm:min-h-[13rem]">
-            {project.image ? (
+            {project.visual === 'evidence' ? (
+              <ProjectVisualPanel
+                title={project.title}
+                visual={project.visual}
+                status={project.status}
+                mediaNote={project.mediaNote}
+                className="h-full min-h-[16rem] sm:min-h-[24rem]"
+              />
+            ) : project.image ? (
               <Image
                 src={project.image}
                 alt={`${project.title} interface preview`}

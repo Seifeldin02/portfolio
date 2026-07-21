@@ -3,7 +3,7 @@ export type ProjectStatus =
   | 'Enterprise Project'
   | 'Internship Project'
   | 'Personal Project';
-export type ProjectVisual = 'academic' | 'enterprise' | 'environmental';
+export type ProjectVisual = 'academic' | 'enterprise' | 'environmental' | 'evidence';
 
 export interface Project {
   id: string;
@@ -36,9 +36,82 @@ export interface Project {
   mediaNote?: string;
   liveUrl?: string;
   featured: boolean;
+  flagship?: boolean;
 }
 
 export const projects: Project[] = [
+  {
+    id: 'codeproof',
+    title: 'CodeProof',
+    slug: 'codeproof-hiring-intelligence',
+    shortDescription:
+      'Evidence-based developer hiring intelligence that connects CV claims to real public repository source files, recruiter insights, and technical interview prompts.',
+    fullDescription:
+      'Built CodeProof as a full-stack recruiter product for turning CVs and public GitHub repositories into auditable engineering evidence, candidate records, hiring insights, and grounded interview preparation.',
+    problem:
+      'Recruiters can see technologies and project links on a CV, but evaluating what a candidate actually implemented across public repositories is slow, inconsistent, and difficult to explain to a technical hiring team.',
+    whatBuilt:
+      'A Next.js and TypeScript recruiter workspace that accepts a text-based CV PDF or pasted CV text, discovers linked GitHub projects, lets the recruiter confirm public repositories, analyzes bounded source archives, and stores a candidate evidence dossier with hiring insights and interview prompts.',
+    technicalSummary:
+      'The full-stack Next.js application combines server-side PDF parsing, bounded public GitHub archive ingestion, deterministic static analysis, source-file evidence scoring, SQLite candidate persistence, signed-cookie authentication, optional PostgreSQL caching, English/Arabic localization, and Vercel deployment.',
+    technologies: ['Next.js', 'TypeScript', 'React', 'Zod', 'SQLite', 'PostgreSQL', 'Vercel'],
+    category: 'full-stack',
+    status: 'Personal Project',
+    visual: 'evidence',
+    keyFeatures: [
+      'CV upload and linked public GitHub repository discovery',
+      'Source-file grounded skill evidence and repository analysis',
+      'Repository-specific technical interview prompts and recruiter insights',
+      'Candidate management, authentication, persistence, and hiring analytics',
+      'Persistent English/Arabic localization with global RTL behavior',
+      'Responsive recruiter workflows across phone, tablet, and desktop',
+    ],
+    achievements: [
+      {
+        metric: 'Source-File Grounded',
+        description:
+          'Implementation claims and interview prompts retain exact source-file references',
+      },
+      {
+        metric: 'Zero-Paid-API Core',
+        description: 'The primary analysis workflow runs without GitHub or OpenAI API credentials',
+      },
+      {
+        metric: 'English and Arabic',
+        description:
+          'Recruiter routes and states support persistent localization and global RTL behavior',
+      },
+    ],
+    technicalChallenges: [
+      'Treating downloaded repository code as untrusted input and analyzing it without execution',
+      'Keeping archive size, expanded files, selected evidence, and PDF input within explicit safety limits',
+      'Preventing dependency or configuration signals from becoming strong implementation evidence',
+      'Keeping recruiter workflows coherent across English, Arabic RTL, mobile, tablet, and desktop layouts',
+      'Separating real candidate-derived analytics from clearly labeled fallback sample data',
+      'Keeping the Vercel demo honest about ephemeral SQLite storage and the need for a durable production candidate store',
+    ],
+    keyAccomplishments: [
+      'Built the complete path from CV intake and repository confirmation to stored candidate dossier',
+      'Grounded skill evidence, strengths, gaps, and interview prompts in inspected source files',
+      'Implemented candidate management, authentication, persistence, comparison, and hiring insights',
+      'Delivered full English/Arabic localization with RTL and responsive recruiter workflows',
+      'Developed collaboratively on GitHub using Codex and Claude while keeping product requirements explicit',
+      'Deployed the full-stack application publicly on Vercel with a working health endpoint',
+    ],
+    technicalDecisions: [
+      'Used bounded public repository archives so the core workflow does not require a GitHub token',
+      'Kept deterministic analysis as the reliable core and made the grounded AI provider optional',
+      'Stored every implementation claim and interview prompt with source-file references',
+      'Used signed HttpOnly session cookies and scrypt password hashing without a third-party auth service',
+      'Applied global locale direction so Arabic recruiter workflows mirror consistently across routes',
+    ],
+    github: 'https://github.com/Seifeldin02/CodeProof',
+    liveUrl: 'https://codeproof-teal.vercel.app/',
+    mediaNote:
+      'Interactive evidence-flow visual based on the live CodeProof recruiter workflow and public architecture documentation.',
+    featured: true,
+    flagship: true,
+  },
   {
     id: 'educomm',
     title: 'EduComm',
@@ -108,6 +181,10 @@ export const projects: Project[] = [
     proofLinks: [
       { label: 'Frontend repository', href: 'https://github.com/Seifeldin02/EduComm' },
       { label: 'Backend repository', href: 'https://github.com/Seifeldin02/educomm-backend' },
+      {
+        label: 'Project documentation',
+        href: 'https://drive.google.com/drive/folders/1LH3iUc1h1wDD6zVnH_IF9voVQbVD46PT?usp=sharing',
+      },
     ],
     mediaNote:
       'Preview based on EduComm project screenshots and public frontend/backend repository structure.',

@@ -7,7 +7,8 @@ import { Section } from '@/components/ui/section';
 export function ContactCTA() {
   return (
     <Section>
-      <div className="rounded-2xl border border-border bg-surface p-8 sm:p-12">
+      <div className="relative overflow-hidden rounded-xl border border-border bg-surface p-8 shadow-[0_20px_70px_rgba(15,23,42,0.06)] sm:p-12 dark:shadow-[0_24px_80px_rgba(0,0,0,0.2)]">
+        <div className="absolute inset-y-0 left-0 w-1 bg-accent" aria-hidden="true" />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="min-w-0">
             <p className="text-sm font-medium uppercase tracking-wide text-accent mb-2">Contact</p>

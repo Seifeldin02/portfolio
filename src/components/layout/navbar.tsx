@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { motion, useScroll } from 'framer-motion';
+import { Download, Menu, X, Moon, Sun } from 'lucide-react';
 import { useTheme } from '@/lib/theme-context';
 import { CommandPaletteTrigger } from '@/components/ui/command-palette';
 import { Container } from '@/components/ui/container';
@@ -24,6 +25,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { isDark, setIsDark } = useTheme();
   const pathname = usePathname();
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -41,7 +43,7 @@ export function Navbar() {
       )}
       aria-label="Main navigation"
     >
-      <Container>
+      <Container size="wide">
         <div className="flex justify-between items-center h-16">
           <Link
             href="/"
@@ -53,7 +55,7 @@ export function Navbar() {
             <span className="hidden sm:inline truncate">{siteConfig.name.split(' ')[0]}</span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => {
               const isActive =
                 link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
@@ -73,6 +75,14 @@ export function Navbar() {
                 </Link>
               );
             })}
+            <a
+              href={siteConfig.resumePath}
+              download
+              className="inline-flex min-h-10 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-muted transition-all duration-200 ease-out hover:-translate-y-px hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 motion-reduce:hover:translate-y-0"
+            >
+              Resume
+              <Download size={14} aria-hidden="true" />
+            </a>
           </div>
 
           <div className="flex items-center gap-1">
@@ -87,7 +97,7 @@ export function Navbar() {
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-muted transition-all duration-200 hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 md:hidden"
+              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-muted transition-all duration-200 hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 lg:hidden"
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isOpen}
             >
@@ -97,7 +107,7 @@ export function Navbar() {
         </div>
 
         {isOpen && (
-          <div className="space-y-1 border-t border-border pb-4 pt-3 md:hidden">
+          <div className="space-y-1 border-t border-border pb-4 pt-3 lg:hidden">
             {navLinks.map((link) => {
               const isActive =
                 link.href === '/' ? pathname === '/' : pathname.startsWith(link.href);
@@ -118,9 +128,22 @@ export function Navbar() {
                 </Link>
               );
             })}
+            <a
+              href={siteConfig.resumePath}
+              download
+              className="flex min-h-11 items-center gap-2 rounded-lg px-3 py-3 text-sm font-medium text-muted transition-colors hover:bg-surface-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+            >
+              Resume
+              <Download size={15} aria-hidden="true" />
+            </a>
           </div>
         )}
       </Container>
+      <motion.div
+        className="absolute inset-x-0 bottom-0 h-px origin-left bg-accent"
+        style={{ scaleX: scrollYProgress }}
+        aria-hidden="true"
+      />
     </nav>
   );
 }

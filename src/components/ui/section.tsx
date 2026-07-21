@@ -18,7 +18,7 @@ export function Section({
   return (
     <section
       className={cn(
-        'py-14 sm:py-20',
+        'py-16 sm:py-24',
         muted && 'bg-surface-muted',
         divider && 'border-t border-border',
         className
@@ -48,15 +48,19 @@ export function SectionHeader({
   return (
     <div
       className={cn(
-        'mb-10 sm:mb-12',
+        'mb-10 sm:mb-14',
         align === 'center' && 'text-center mx-auto max-w-2xl',
         className
       )}
     >
       {eyebrow && (
-        <p className="text-sm font-medium tracking-wide uppercase text-accent mb-2">{eyebrow}</p>
+        <p className="mb-3 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.12em] text-accent before:h-px before:w-7 before:bg-accent/60">
+          {eyebrow}
+        </p>
       )}
-      <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-foreground">{title}</h2>
+      <h2 className="max-w-4xl text-3xl font-semibold tracking-[-0.03em] text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-[1.05]">
+        {title}
+      </h2>
       {description && <p className="mt-3 text-lg text-muted leading-relaxed">{description}</p>}
     </div>
   );
