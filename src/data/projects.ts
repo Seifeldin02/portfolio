@@ -107,6 +107,12 @@ export const projects: Project[] = [
     ],
     github: 'https://github.com/Seifeldin02/CodeProof',
     liveUrl: 'https://codeproof-teal.vercel.app/',
+    proofLinks: [
+      {
+        label: 'Kanz portfolio',
+        href: 'https://try.ka.nz/ai/seifeldinmahmoud',
+      },
+    ],
     mediaNote:
       'Interactive evidence-flow visual based on the live CodeProof recruiter workflow and public architecture documentation.',
     featured: true,

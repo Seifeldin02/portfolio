@@ -13,6 +13,17 @@ export interface Certification {
 
 export const certifications: Certification[] = [
   {
+    id: 'kanz-ai-hackathon-gold-medal',
+    type: 'certification',
+    title: 'Gold Medal - Kanz AI Hackathon',
+    issuer: 'Kanz AI',
+    description: 'CodeProof: Verify Developer Skills Through Real Code.',
+    credentialUrl:
+      'https://try.ka.nz/certificate/KANZ-ATT-D6375F1D3E?certificate_type=showcase&recipient_name=Seifeldin+Mahmoud&issue_date=July+15%2C+2026&certificate_id=KANZ-ATT-D6375F1D3E&project_title=CodeProof+%E2%80%94+Verify+Developer+Skills+Through+Real+Code&blog_post_url=https%3A%2F%2Ftry.ka.nz%2Fai%2Fseifeldinmahmoud&custom_preview_image=https%3A%2F%2Foclvdlvvdrtebkapjdek.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fsubmissions%2Fseifeldin-mahmoud-1784578562909%2Fhero-1784578566937.png',
+    actionLabel: 'Verify Kanz certificate',
+    skills: ['AI Hackathon', 'CodeProof', 'Full-Stack Development'],
+  },
+  {
     id: 'aws-cloud-foundations',
     type: 'certification',
     title: 'AWS Academy Graduate - Cloud Foundations - Training Badge',
